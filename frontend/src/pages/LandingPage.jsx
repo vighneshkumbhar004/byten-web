@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LandingAnimation from '../components/LandingAnimation';
+import GeomappingAnimation from '../components/GeomappingAnimation';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import LogoBanner from '../components/LogoBanner';
@@ -14,9 +14,9 @@ const LandingPage = () => {
 
   return (
     <>
-      {/* Landing Animation */}
+      {/* 3D Geomapping Animation */}
       {showLanding && (
-        <LandingAnimation onComplete={() => setShowLanding(false)} />
+        <GeomappingAnimation onComplete={() => setShowLanding(false)} />
       )}
 
       {/* Main Content */}

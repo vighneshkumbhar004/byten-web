@@ -225,14 +225,23 @@ User Interaction → Frontend (Framer Motion UI) → API Request → FastAPI Bac
 ## Premium Animations (Completed March 31, 2026)
 
 ### Landing Animation (Preloader)
-- **Duration:** 3 seconds
+- **Duration:** 4 seconds with 3 phases
+- **Technology:** 3D CSS transforms + SVG + Framer Motion
 - **Features:**
-  - Animated grid background
-  - Glowing logo with pulsing effect
-  - Progress bar loading animation
-  - Expanding circles animation
-  - Particle burst effect
-  - Smooth fade-out transition
+  - **Starfield Background** - Twinkling stars for depth
+  - **3D Rotating Grid Terrain** - Perspective-transformed geospatial grid
+  - **Topographic Contour Lines** - Animated elevation mapping
+  - **Scanning Beam Effect** - Moving LiDAR-style scan
+  - **50 Data Points** - Staggered appearance with glow
+  - **Elevation Markers** - Vertical lines showing terrain height
+  - **HUD Corner Brackets** - Professional scanning interface
+  - **Real-time Coordinates** - LAT/LONG/ALT display
+  - **Three Phases:**
+    1. **Scanning (0-1.5s):** Grid formation + scanning beam
+    2. **Processing (1.5-3s):** Data point plotting + elevation mapping
+    3. **Complete (3-4s):** Full 360° rotation + fade out
+  - **Status Display:** Real-time scan percentage and metrics
+  - **Glowing Logo** - Pulsing effect with drop shadow
 
 ### Page Animations
 1. **Navbar** - Slide down from top (0.6s)

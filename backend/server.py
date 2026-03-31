@@ -15,7 +15,6 @@ load_dotenv(ROOT_DIR / '.env')
 
 # Import routes
 from routes.contact import router as contact_router
-from routes.chat import router as chat_router
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -46,9 +45,6 @@ async def health_check():
 
 # Include contact routes
 api_router.include_router(contact_router, tags=["Contact & Demo"])
-
-# Include chat routes
-api_router.include_router(chat_router, tags=["Chatbot"])
 
 # Include the router in the main app
 app.include_router(api_router)

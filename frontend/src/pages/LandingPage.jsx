@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import GeomappingAnimation from '../components/GeomappingAnimation';
 import ScrollFrameAnimation from '../components/ScrollFrameAnimation';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
@@ -13,45 +12,26 @@ import FloatingChatbot from '../components/FloatingChatbot';
 import WhatsAppButton from '../components/WhatsAppButton';
 
 const LandingPage = () => {
-  const [showLanding, setShowLanding] = useState(true);
-
   return (
-    <>
-      {/* 3D Geomapping Animation */}
-      {showLanding && (
-        <GeomappingAnimation onComplete={() => setShowLanding(false)} />
-      )}
-
-      {/* Main Content */}
-      <AnimatePresence>
-        {!showLanding && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative min-h-screen"
-          >
-            {/* Scroll-triggered Drone Frame Animation Background */}
-            <ScrollFrameAnimation />
-            
-            {/* Content Layer */}
-            <div className="relative z-10">
-              <Navbar />
-              <HeroSection />
-              <LogoBanner />
-              <FeaturesSection />
-              <ProductGrid />
-              <ContactForm />
-              <Footer />
-              
-              {/* Floating Widgets */}
-              <FloatingChatbot />
-              <WhatsAppButton />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <div className="relative min-h-screen">
+      {/* Scroll-triggered Drone Frame Animation Background */}
+      <ScrollFrameAnimation />
+      
+      {/* Content Layer */}
+      <div className="relative z-10">
+        <Navbar />
+        <HeroSection />
+        <LogoBanner />
+        <FeaturesSection />
+        <ProductGrid />
+        <ContactForm />
+        <Footer />
+        
+        {/* Floating Widgets */}
+        <FloatingChatbot />
+        <WhatsAppButton />
+      </div>
+    </div>
   );
 };
 

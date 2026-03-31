@@ -14,6 +14,8 @@ const ScrollFrameAnimation = () => {
     const images = [];
     let loadedCount = 0;
 
+    console.log('🚁 Starting to load drone frames...');
+
     for (let i = 0; i < totalFrames; i++) {
       const img = new Image();
       const frameNumber = String(i).padStart(3, '0');
@@ -21,6 +23,7 @@ const ScrollFrameAnimation = () => {
       
       img.onload = () => {
         loadedCount++;
+        console.log(`✓ Loaded frame ${loadedCount}/${totalFrames}`);
         if (loadedCount === totalFrames) {
           setImagesLoaded(true);
           console.log(`✅ All ${totalFrames} drone frames loaded!`);
@@ -29,6 +32,7 @@ const ScrollFrameAnimation = () => {
       
       img.onerror = () => {
         console.error(`❌ Failed to load frame: ${frameNumber}`);
+        console.error(`URL: ${img.src}`);
       };
       
       images.push(img);
@@ -40,17 +44,15 @@ const ScrollFrameAnimation = () => {
   // Handle scroll to change frames
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate scroll progress (0 to 1)
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollProgress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
       
-      // Map scroll progress to frame number (0 to totalFrames-1)
       const frameIndex = Math.floor(scrollProgress * (totalFrames - 1));
       setCurrentFrame(frameIndex);
     };
 
-    handleScroll(); // Set initial frame
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -64,14 +66,11 @@ const ScrollFrameAnimation = () => {
     const img = imagesRef.current[currentFrame];
 
     if (img && img.complete) {
-      // Set canvas size to window size
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw image to cover entire canvas
       const scale = Math.max(
         canvas.width / img.width,
         canvas.height / img.height
@@ -93,7 +92,6 @@ const ScrollFrameAnimation = () => {
       if (canvas) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        // Force redraw
         const frameIndex = currentFrame;
         setCurrentFrame(-1);
         setTimeout(() => setCurrentFrame(frameIndex), 10);
@@ -109,36 +107,42 @@ const ScrollFrameAnimation = () => {
       {/* Fixed background canvas */}
       <canvas
         ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-full -z-10"
+        className="fixed top-0 left-0 w-full h-full"
         style={{
+          zIndex: 0,
           objectFit: 'cover',
-          filter: 'brightness(0.4) blur(2px)' // Much darker + slight blur for depth
+          filter: 'brightness(0.35)' // Darker for better contrast
         }}
       />
       
       {/* Dark overlay for better text readability */}
-      <div className="fixed inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50 -z-10 pointer-events-none" />
-      
-      {/* Loading indicator */}
-      {!imagesLoaded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A111A]">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#FFCC00] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-white text-lg font-semibold">Loading Drone Animation...</p>
-            <p className="text-gray-400 text-sm mt-2">Preparing {totalFrames} frames</p>
-          </div>
-        </div>
-      )}
+      <div 
+        className="fixed inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 pointer-events-none"
+        style={{ zIndex: 1 }}
+      />
 
-      {/* Frame counter (optional - can remove) */}
+      {/* Frame counter */}
       {imagesLoaded && (
-        <div className="fixed bottom-20 right-4 bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-xs font-mono z-40">
+        <div 
+          className="fixed bottom-20 right-4 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs font-mono"
+          style={{ zIndex: 100 }}
+        >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-[#FFCC00] rounded-full animate-pulse"></div>
             <span>Frame: {currentFrame + 1}/{totalFrames}</span>
           </div>
-          <div className="text-[10px] text-gray-400 mt-1">
-            Scroll: {Math.round((currentFrame / (totalFrames - 1)) * 100)}%
+        </div>
+      )}
+      
+      {/* Loading state */}
+      {!imagesLoaded && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center bg-[#0A111A]"
+          style={{ zIndex: 9999 }}
+        >
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-[#FFCC00] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-white text-lg font-semibold">Loading...</p>
           </div>
         </div>
       )}

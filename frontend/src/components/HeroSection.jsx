@@ -20,7 +20,6 @@ import {
   staggerItem,
   imageReveal
 } from '../utils/animations';
-import TerrainViewer3D from './TerrainViewer3D';
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, label, duration = 2 }) => {
@@ -39,11 +38,9 @@ const AnimatedCounter = ({ end, label, duration = 2 }) => {
       const progress = (timestamp - startTime) / (duration * 1000);
 
       if (progress < 1) {
-        // Parse the numeric part from strings like "2.4B+"
         const numericEnd = parseFloat(end);
         const current = numericEnd * progress;
         
-        // Format based on the original format
         if (end.includes('B+')) {
           setCount(`${current.toFixed(1)}B+`);
         } else if (end.includes('%')) {
@@ -91,6 +88,12 @@ const HeroSection = () => {
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const dashboardImages = [
+    "https://images.unsplash.com/photo-1583932692931-7929f3c35e6a?w=800",
+    "https://images.pexels.com/photos/4558710/pexels-photo-4558710.jpeg?w=800",
+    "https://images.pexels.com/photos/6366444/pexels-photo-6366444.jpeg?w=800"
+  ];
 
   const handleDemoRequest = async (e) => {
     e.preventDefault();
@@ -185,25 +188,36 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* 3D Terrain Model Viewer */}
-          <div className="max-w-6xl mx-auto mb-8">
-            <TerrainViewer3D />
-          </div>
-
-          {/* Description under 3D model */}
+          {/* Dashboard Images */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="text-center max-w-3xl mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="relative max-w-5xl mx-auto"
           >
-            <p className="text-gray-600 mb-2">
-              <span className="font-semibold text-[#0A111A]">Real-Time 3D Terrain Visualization</span>
-            </p>
-            <p className="text-sm text-gray-500">
-              Experience survey-grade 3D models with photorealistic textures captured by our LiDAR-equipped drones. 
-              Every terrain feature mapped with 0.3cm precision.
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {dashboardImages.map((img, index) => (
+                <motion.div 
+                  key={index}
+                  variants={imageReveal}
+                  custom={index}
+                  whileHover={{ scale: 1.05, zIndex: 10 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative rounded-xl overflow-hidden shadow-2xl"
+                  style={{
+                    marginTop: index === 1 ? '2rem' : '0',
+                    marginBottom: index === 1 ? '0' : '2rem'
+                  }}
+                >
+                  <img 
+                    src={img} 
+                    alt={`Dashboard ${index + 1}`}
+                    className="w-full h-64 md:h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A111A]/30 to-transparent"></div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>

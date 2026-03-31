@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GeomappingAnimation from '../components/GeomappingAnimation';
+import ScrollFrameAnimation from '../components/ScrollFrameAnimation';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import LogoBanner from '../components/LogoBanner';
@@ -28,19 +29,25 @@ const LandingPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-white"
+            className="relative min-h-screen"
           >
-            <Navbar />
-            <HeroSection />
-            <LogoBanner />
-            <FeaturesSection />
-            <ProductGrid />
-            <ContactForm />
-            <Footer />
+            {/* Scroll-triggered Drone Frame Animation Background */}
+            <ScrollFrameAnimation />
             
-            {/* Floating Widgets */}
-            <FloatingChatbot />
-            <WhatsAppButton />
+            {/* Content Layer */}
+            <div className="relative z-10">
+              <Navbar />
+              <HeroSection />
+              <LogoBanner />
+              <FeaturesSection />
+              <ProductGrid />
+              <ContactForm />
+              <Footer />
+              
+              {/* Floating Widgets */}
+              <FloatingChatbot />
+              <WhatsAppButton />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,20 +1,14 @@
 import React, { useRef, Suspense } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, Environment, useGLTF, useTexture } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import * as THREE from 'three';
 
-// 3D Rock Model Component
+// 3D Rock Model Component - Simplified
 function RockModel() {
   const meshRef = useRef();
-  const gltf = useGLTF('/models/rock.glb');
   
-  // Load textures from public folder
-  const [colorMap, normalMap, armMap] = useTexture([
-    '/textures/rock_diffuse.jpeg',
-    '/textures/rock_normal.jpeg',
-    '/textures/rock_arm.jpeg'
-  ]);
+  // Load model - useGLTF hook handles loading automatically
+  const { scene } = useGLTF('/models/rock.glb');
 
   // Auto-rotate animation
   useFrame((state) => {
@@ -24,30 +18,10 @@ function RockModel() {
     }
   });
 
-  // Apply textures to the model
-  React.useEffect(() => {
-    if (gltf.scene) {
-      gltf.scene.traverse((child) => {
-        if (child.isMesh) {
-          // Create material with textures
-          child.material = new THREE.MeshStandardMaterial({
-            map: colorMap,
-            normalMap: normalMap,
-            roughnessMap: armMap,
-            aoMap: armMap,
-            metalness: 0.1,
-            roughness: 0.8,
-          });
-          child.material.needsUpdate = true;
-        }
-      });
-    }
-  }, [gltf, colorMap, normalMap, armMap]);
-
   return (
     <primitive 
       ref={meshRef}
-      object={gltf.scene} 
+      object={scene} 
       scale={2.5}
       position={[0, -1, 0]}
     />
@@ -57,12 +31,10 @@ function RockModel() {
 // Loading fallback
 function LoadingSpinner() {
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="relative">
-        <div className="w-16 h-16 border-4 border-[#FFCC00] border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-sm text-gray-600 mt-4 text-center">Loading 3D Terrain...</p>
-      </div>
-    </div>
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="#FFCC00" wireframe />
+    </mesh>
   );
 }
 
@@ -105,21 +77,20 @@ const TerrainViewer3D = () => {
         camera={{ position: [3, 2, 5], fov: 50 }}
         gl={{ 
           antialias: true, 
-          alpha: true,
-          powerPreference: "high-performance"
+          alpha: true
         }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingSpinner />}>
           {/* Lighting */}
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
-          <directionalLight position={[-10, -10, -5]} intensity={0.3} />
-          <pointLight position={[0, 5, 0]} intensity={0.5} color="#FFCC00" />
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[10, 10, 5]} intensity={1.2} />
+          <directionalLight position={[-10, -10, -5]} intensity={0.4} />
+          <pointLight position={[0, 5, 0]} intensity={0.6} color="#FFCC00" />
           
           {/* 3D Model */}
           <RockModel />
           
-          {/* Environment for reflections */}
+          {/* Environment for realistic lighting */}
           <Environment preset="sunset" />
           
           {/* Controls */}
@@ -129,15 +100,9 @@ const TerrainViewer3D = () => {
             minDistance={3}
             maxDistance={10}
             maxPolarAngle={Math.PI / 2}
-            autoRotate={false}
           />
         </Suspense>
       </Canvas>
-
-      {/* Loading Overlay */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <div />
-      </Suspense>
 
       {/* Grid Background Effect */}
       <div 
@@ -159,5 +124,8 @@ const TerrainViewer3D = () => {
     </motion.div>
   );
 };
+
+// Preload the model
+useGLTF.preload('/models/rock.glb');
 
 export default TerrainViewer3D;

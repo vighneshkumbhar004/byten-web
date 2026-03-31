@@ -13,23 +13,62 @@ import {
   DialogTitle,
 } from './ui/dialog';
 import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
-  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  
+  const [demoForm, setDemoForm] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    jobTitle: '',
+    industry: '',
+    companySize: '',
+    projectType: '',
+    budget: '',
+    timeline: '',
+    specificRequirements: ''
+  });
+
+  const handleInputChange = (field, value) => {
+    setDemoForm(prev => ({ ...prev, [field]: value }));
+  };
 
   const handleDemoRequest = async (e) => {
     e.preventDefault();
     setLoading(true);
     
-    const result = await requestDemo(email, 'navbar');
+    // Send detailed form data
+    const result = await requestDemo(demoForm.email, 'navbar_detailed', demoForm);
     
     if (result.success) {
-      toast.success('Demo request submitted! We\'ll contact you within 24 hours.');
+      toast.success('Demo request submitted! Our team will contact you within 24 hours.');
       setDemoDialogOpen(false);
-      setEmail('');
+      setDemoForm({
+        fullName: '',
+        email: '',
+        phone: '',
+        company: '',
+        jobTitle: '',
+        industry: '',
+        companySize: '',
+        projectType: '',
+        budget: '',
+        timeline: '',
+        specificRequirements: ''
+      });
     } else {
       toast.error(result.error);
     }
@@ -150,31 +189,198 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Demo Request Dialog */}
+      {/* Enhanced Demo Request Dialog */}
       <Dialog open={demoDialogOpen} onOpenChange={setDemoDialogOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-[#0A111A]">Request a Demo</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-[#0A111A]">
+              Request an Intelligence Briefing
+            </DialogTitle>
             <DialogDescription>
-              Enter your email and we'll schedule an intelligence briefing with our team.
+              Tell us about your project and we'll schedule a personalized demo with our geospatial architects.
             </DialogDescription>
           </DialogHeader>
+          
           <form onSubmit={handleDemoRequest} className="space-y-4 mt-4">
-            <Input
-              type="email"
-              placeholder="your.email@company.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full"
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Full Name */}
+              <div>
+                <Label htmlFor="fullName">Full Name *</Label>
+                <Input
+                  id="fullName"
+                  value={demoForm.fullName}
+                  onChange={(e) => handleInputChange('fullName', e.target.value)}
+                  required
+                  placeholder="John Doe"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <Label htmlFor="email">Work Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={demoForm.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  required
+                  placeholder="john@company.com"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <Label htmlFor="phone">Phone Number *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={demoForm.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  required
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+
+              {/* Company */}
+              <div>
+                <Label htmlFor="company">Company Name *</Label>
+                <Input
+                  id="company"
+                  value={demoForm.company}
+                  onChange={(e) => handleInputChange('company', e.target.value)}
+                  required
+                  placeholder="Acme Corp"
+                />
+              </div>
+
+              {/* Job Title */}
+              <div>
+                <Label htmlFor="jobTitle">Job Title</Label>
+                <Input
+                  id="jobTitle"
+                  value={demoForm.jobTitle}
+                  onChange={(e) => handleInputChange('jobTitle', e.target.value)}
+                  placeholder="Infrastructure Manager"
+                />
+              </div>
+
+              {/* Industry */}
+              <div>
+                <Label htmlFor="industry">Industry *</Label>
+                <Select onValueChange={(value) => handleInputChange('industry', value)} required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select industry" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="infrastructure">Infrastructure & Civil</SelectItem>
+                    <SelectItem value="energy">Energy & Power</SelectItem>
+                    <SelectItem value="mining">Mining & Quarrying</SelectItem>
+                    <SelectItem value="smart-city">Smart Cities</SelectItem>
+                    <SelectItem value="oil-gas">Oil & Gas</SelectItem>
+                    <SelectItem value="real-estate">Real Estate</SelectItem>
+                    <SelectItem value="agriculture">Agriculture</SelectItem>
+                    <SelectItem value="government">Government</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Company Size */}
+              <div>
+                <Label htmlFor="companySize">Company Size</Label>
+                <Select onValueChange={(value) => handleInputChange('companySize', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1-10">1-10 employees</SelectItem>
+                    <SelectItem value="11-50">11-50 employees</SelectItem>
+                    <SelectItem value="51-200">51-200 employees</SelectItem>
+                    <SelectItem value="201-500">201-500 employees</SelectItem>
+                    <SelectItem value="501-1000">501-1000 employees</SelectItem>
+                    <SelectItem value="1000+">1000+ employees</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Project Type */}
+              <div>
+                <Label htmlFor="projectType">Project Type *</Label>
+                <Select onValueChange={(value) => handleInputChange('projectType', value)} required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="survey">Drone Survey & Mapping</SelectItem>
+                    <SelectItem value="monitoring">Infrastructure Monitoring</SelectItem>
+                    <SelectItem value="inspection">Industrial Inspection</SelectItem>
+                    <SelectItem value="digital-twin">Digital Twin Platform</SelectItem>
+                    <SelectItem value="predictive">Predictive Maintenance</SelectItem>
+                    <SelectItem value="multiple">Multiple Services</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Budget Range */}
+              <div>
+                <Label htmlFor="budget">Budget Range</Label>
+                <Select onValueChange={(value) => handleInputChange('budget', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="under-50k">Under ₹50,000</SelectItem>
+                    <SelectItem value="50k-1L">₹50,000 - ₹1,00,000</SelectItem>
+                    <SelectItem value="1L-5L">₹1L - ₹5L</SelectItem>
+                    <SelectItem value="5L-10L">₹5L - ₹10L</SelectItem>
+                    <SelectItem value="10L-50L">₹10L - ₹50L</SelectItem>
+                    <SelectItem value="50L+">₹50L+</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Timeline */}
+              <div>
+                <Label htmlFor="timeline">Project Timeline</Label>
+                <Select onValueChange={(value) => handleInputChange('timeline', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="When do you need it?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="immediate">Immediate (within 1 week)</SelectItem>
+                    <SelectItem value="1-month">Within 1 month</SelectItem>
+                    <SelectItem value="1-3-months">1-3 months</SelectItem>
+                    <SelectItem value="3-6-months">3-6 months</SelectItem>
+                    <SelectItem value="6+ months">6+ months</SelectItem>
+                    <SelectItem value="exploring">Just exploring</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Specific Requirements */}
+            <div>
+              <Label htmlFor="requirements">Specific Requirements or Questions</Label>
+              <Textarea
+                id="requirements"
+                value={demoForm.specificRequirements}
+                onChange={(e) => handleInputChange('specificRequirements', e.target.value)}
+                placeholder="Tell us about your project area, specific challenges, or any questions you have..."
+                rows={4}
+              />
+            </div>
+
             <Button 
               type="submit"
               disabled={loading}
-              className="w-full bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-semibold"
+              className="w-full bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-semibold py-6 text-lg"
             >
-              {loading ? 'Submitting...' : 'Request Demo'}
+              {loading ? 'Submitting...' : 'Schedule Intelligence Briefing'}
             </Button>
+
+            <p className="text-xs text-gray-500 text-center">
+              By submitting, you agree to our privacy policy. We'll contact you within 24 hours.
+            </p>
           </form>
         </DialogContent>
       </Dialog>

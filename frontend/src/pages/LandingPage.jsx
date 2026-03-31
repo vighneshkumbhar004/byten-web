@@ -8,6 +8,8 @@ import FeaturesSection from '../components/FeaturesSection';
 import ProductGrid from '../components/ProductGrid';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
+import FloatingChatbot from '../components/FloatingChatbot';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 const LandingPage = () => {
   const [showLanding, setShowLanding] = useState(true);
@@ -35,6 +37,10 @@ const LandingPage = () => {
             <ProductGrid />
             <ContactForm />
             <Footer />
+            
+            {/* Floating Widgets */}
+            <FloatingChatbot />
+            <WhatsAppButton />
           </motion.div>
         )}
       </AnimatePresence>

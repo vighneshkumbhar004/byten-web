@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import LandingAnimation from '../components/LandingAnimation';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import LogoBanner from '../components/LogoBanner';
@@ -8,16 +10,35 @@ import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 
 const LandingPage = () => {
+  const [showLanding, setShowLanding] = useState(true);
+
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <HeroSection />
-      <LogoBanner />
-      <FeaturesSection />
-      <ProductGrid />
-      <ContactForm />
-      <Footer />
-    </div>
+    <>
+      {/* Landing Animation */}
+      {showLanding && (
+        <LandingAnimation onComplete={() => setShowLanding(false)} />
+      )}
+
+      {/* Main Content */}
+      <AnimatePresence>
+        {!showLanding && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen bg-white"
+          >
+            <Navbar />
+            <HeroSection />
+            <LogoBanner />
+            <FeaturesSection />
+            <ProductGrid />
+            <ContactForm />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

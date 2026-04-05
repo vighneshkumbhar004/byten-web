@@ -34,39 +34,51 @@ export const clientLogos = [
 export const features = [
   {
     id: 1,
-    title: "Survey-Grade Precision Mapping",
-    description: "Achieve unparalleled accuracy with our LiDAR and drone-based surveying technology. We deliver 0.3cm precision—not drone-grade, survey-grade—backed by DGCA licensing and ISO 9001:2015 certification.",
+    title: "Surveying",
+    description: "Precision geospatial data capture through advanced 3D land mapping, drone technology, and DGPS control points. We deliver millimeter-accurate surveys for infrastructure projects, land development, and site planning with cutting-edge aerial and ground-based mapping solutions.",
     quote: {
-      text: "Byten reduced our inspection time by 65% while improving accuracy. The predictive insights have been game-changing.",
-      author: "Senior Infrastructure Manager",
-      company: "Major Highway Network"
+      text: "The 3D mapping accuracy exceeded our expectations. Byten's drone surveys saved us weeks of traditional surveying work.",
+      author: "Project Manager",
+      company: "Infrastructure Development Corp"
     },
-    image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800",
+    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800",
     imagePosition: "left"
   },
   {
     id: 2,
-    title: "AI-Powered Predictive Intelligence",
-    description: "Move beyond reactive monitoring. Our proprietary AI models predict infrastructure failures, construction delays, and maintenance needs before they occur—saving millions in operational costs.",
+    title: "Inspection",
+    description: "Comprehensive inspection services including thermal imaging, power grid monitoring, construction site analysis, and factory assessments. Our advanced inspection technology identifies issues before they become critical, ensuring safety and operational efficiency across all industrial applications.",
     quote: {
-      text: "The AI detected structural anomalies 3 months before our traditional inspection schedule. This early warning prevented a major incident.",
+      text: "Thermal inspections of our power grid revealed hotspots we never knew existed. This prevented potential equipment failures.",
       author: "Chief Operations Officer",
       company: "Energy Infrastructure"
     },
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800",
     imagePosition: "right"
   },
   {
     id: 3,
-    title: "Real-Time Digital Twin Platform",
-    description: "Experience your entire operation through an intelligent digital replica. Our SaaS dashboard delivers real-time monitoring, 3D visualization, and actionable insights—all in one integrated platform.",
+    title: "Videography",
+    description: "Professional aerial and ground videography for infrastructure mapping, site security monitoring, and project documentation. Our high-resolution video capture provides real-time surveillance and comprehensive visual records for construction progress tracking and security applications.",
     quote: {
-      text: "Having a live digital twin of our 50km pipeline network has revolutionized how we manage assets and respond to incidents.",
-      author: "Head of Operations",
-      company: "Oil & Gas Corporation"
+      text: "The aerial videography transformed how we monitor site security and track construction progress across multiple locations.",
+      author: "Security Director",
+      company: "Commercial Real Estate"
     },
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+    image: "https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=800",
     imagePosition: "left"
+  },
+  {
+    id: 4,
+    title: "Digiphuctux",
+    description: "Digital transformation solutions leveraging cutting-edge geospatial technology and data analytics. We convert physical infrastructure into intelligent digital assets, enabling data-driven decision making and operational excellence through advanced digital workflows and automated reporting systems.",
+    quote: {
+      text: "Their digital solutions revolutionized our asset management. We now have complete digital control over our operations.",
+      author: "Head of Digital Transformation",
+      company: "Smart City Initiative"
+    },
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+    imagePosition: "right"
   }
 ];
 

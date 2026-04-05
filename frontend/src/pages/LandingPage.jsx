@@ -1,10 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
-import LogoBanner from '../components/LogoBanner';
+import FieldsWeWorkUnder from '../components/FieldsWeWorkUnder';
 import FeaturesSection from '../components/FeaturesSection';
 import ProductGrid from '../components/ProductGrid';
 import ContactForm from '../components/ContactForm';
+import TrustedBySection from '../components/LogoBanner';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 
@@ -13,10 +14,11 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       <HeroSection />
-      <LogoBanner />
+      <FieldsWeWorkUnder />
       <FeaturesSection />
       <ProductGrid />
       <ContactForm />
+      <TrustedBySection />
       <Footer />
       
       {/* WhatsApp Widget */}

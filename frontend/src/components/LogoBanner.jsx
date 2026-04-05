@@ -1,9 +1,9 @@
 import React from 'react';
 import { clientLogos } from '../mock/mockData';
 
-const LogoBanner = () => {
+const TrustedBySection = () => {
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-gray-500 font-medium mb-10 uppercase tracking-wider text-sm">
           Trusted by Leading Enterprises
@@ -27,4 +27,4 @@ const LogoBanner = () => {
   );
 };
 
-export default LogoBanner;
+export default TrustedBySection;

@@ -93,11 +93,13 @@ const Navbar = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex items-center"
             >
-              <img 
-                src={companyInfo.logo} 
-                alt={companyInfo.name}
-                className="h-12 w-auto"
-              />
+              <a href="/" className="cursor-pointer">
+                <img 
+                  src={companyInfo.logo} 
+                  alt={companyInfo.name}
+                  className="h-12 w-auto"
+                />
+              </a>
             </motion.div>
 
             {/* Desktop Navigation */}

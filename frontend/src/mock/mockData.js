@@ -9,8 +9,8 @@ export const companyInfo = {
 };
 
 export const heroData = {
-  headline: "See Everything. Know Everything. Decide Precisely.",
-  subheadline: "The End-to-End Geospatial Intelligence Platform powered by AI that transforms physical infrastructure into actionable intelligence.",
+  headline: "Byten",
+  subheadline: "Precision. Vision. Intelligence",
   primaryCTA: "Request a Demo",
   secondaryCTA: "Learn More"
 };

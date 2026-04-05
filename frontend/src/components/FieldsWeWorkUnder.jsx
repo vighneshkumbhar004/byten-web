@@ -1,51 +1,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { Building2, Zap, HardHat, Mountain, Sprout, Building, Users } from 'lucide-react';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 
 const fields = [
   {
     id: 1,
     name: 'Infrastructure',
-    icon: Building2,
-    description: 'Highways, bridges, railways, and urban infrastructure monitoring'
+    image: 'https://images.unsplash.com/photo-1768174004465-8afe7a180052?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxpbmZyYXN0cnVjdHVyZSUyMGNvbnN0cnVjdGlvbiUyMGFlcmlhbCUyMHZpZXd8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 2,
     name: 'Energy',
-    icon: Zap,
-    description: 'Power grids, solar farms, wind turbines, and energy infrastructure'
+    image: 'https://images.unsplash.com/photo-1765263857986-271b4923632d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbmVyZ3klMjBwb3dlciUyMHJlbmV3YWJsZSUyMHNvbGFyJTIwd2luZHxlbnwwfHx8fDE3NzUzOTc3NDZ8MA&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 3,
     name: 'Construction',
-    icon: HardHat,
-    description: 'Site mapping, progress tracking, and construction management'
+    image: 'https://images.unsplash.com/photo-1663058480199-acbc638bf21a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGUlMjB3b3JrZXJzfGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 4,
     name: 'Mining',
-    icon: Mountain,
-    description: 'Quarry mapping, volume measurement, and safety inspections'
+    image: 'https://images.unsplash.com/photo-1772543983082-a8a8051ab612?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBxdWFycnklMjBleGNhdmF0aW9ufGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 5,
     name: 'Agriculture',
-    icon: Sprout,
-    description: 'Crop monitoring, land surveying, and precision agriculture'
+    image: 'https://images.unsplash.com/photo-1721594489446-7fd9d30a3d71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyZSUyMGZhcm1pbmclMjBhZXJpYWx8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 6,
     name: 'Government',
-    icon: Building,
-    description: 'Smart cities, disaster management, and public infrastructure'
+    image: 'https://images.unsplash.com/photo-1760553120312-2821bf54e767?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHBsYW5uaW5nJTIwY2l0eSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
   },
   {
     id: 7,
     name: 'Agencies',
-    icon: Users,
-    description: 'Survey agencies, consulting firms, and service providers'
+    image: 'https://images.unsplash.com/photo-1624222924285-c8e0951b1d18?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwbW9uaXRvcmluZyUyMG5hdHVyZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   }
 ];
 
@@ -74,29 +66,30 @@ const FieldsWeWorkUnder = () => {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
         >
           {fields.map((field) => {
-            const IconComponent = field.icon;
             return (
               <motion.div
                 key={field.id}
                 variants={staggerItem}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-[#FFCC00]"
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="relative h-32 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="bg-[#FFCC00] rounded-lg p-3 flex-shrink-0">
-                    <IconComponent size={24} className="text-[#0A111A]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-[#0A111A] mb-2">
-                      {field.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {field.description}
-                    </p>
-                  </div>
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${field.image})` }}
+                />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/90 group-hover:via-black/50 transition-all duration-300" />
+                
+                {/* Text */}
+                <div className="absolute inset-0 flex items-center justify-center p-4">
+                  <h3 className="font-bold text-base md:text-lg text-white text-center drop-shadow-lg">
+                    {field.name}
+                  </h3>
                 </div>
               </motion.div>
             );

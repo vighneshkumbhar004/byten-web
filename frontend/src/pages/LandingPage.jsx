@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import FieldsWeWorkUnder from '../components/FieldsWeWorkUnder';
+import TechSection from '../components/TechSection';
 import FeaturesSection from '../components/FeaturesSection';
 import ProductGrid from '../components/ProductGrid';
 import ContactForm from '../components/ContactForm';
@@ -15,6 +16,7 @@ const LandingPage = () => {
       <Navbar />
       <HeroSection />
       <FieldsWeWorkUnder />
+      <TechSection />
       <FeaturesSection />
       <ProductGrid />
       <ContactForm />

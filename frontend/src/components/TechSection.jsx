@@ -46,13 +46,12 @@ const TechSection = () => {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="py-32 bg-[#0A111A] relative overflow-hidden" ref={ref}>
+    <section className="py-32 bg-white relative overflow-hidden" ref={ref}>
       {/* Premium Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A111A] via-[#1A2130] to-[#0A111A]" />
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,204,0,0.15) 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(10,17,26,0.15) 1px, transparent 0)',
             backgroundSize: '40px 40px'
           }} />
         </div>
@@ -72,21 +71,21 @@ const TechSection = () => {
             transition={{ delay: 0.1 }}
             className="inline-block mb-6"
           >
-            <div className="flex items-center gap-3 bg-[#FFCC00]/10 backdrop-blur-sm border border-[#FFCC00]/20 rounded-full px-6 py-3">
+            <div className="flex items-center gap-3 bg-[#0A111A]/5 backdrop-blur-sm border border-[#0A111A]/10 rounded-full px-6 py-3">
               <div className="w-2 h-2 rounded-full bg-[#FFCC00] animate-pulse" />
-              <span className="text-[#FFCC00] font-semibold uppercase tracking-wider text-sm">
+              <span className="text-[#0A111A] font-semibold uppercase tracking-wider text-sm">
                 Technology Excellence
               </span>
             </div>
           </motion.div>
           
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-5xl md:text-7xl font-bold text-[#0A111A] mb-6 leading-tight">
             Premium Technology.<br />
             <span className="bg-gradient-to-r from-[#FFCC00] to-[#FFD633] bg-clip-text text-transparent">
               Professional Results.
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Military-grade hardware meets enterprise software. Built for those who demand excellence.
           </p>
         </motion.div>
@@ -169,8 +168,8 @@ const TechShowcase = ({ tech, index, isInView, isActive, setActive }) => {
                 className="w-full h-full object-cover"
               />
               {/* Premium Gradient Overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${tech.gradient} opacity-40 mix-blend-overlay`} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${tech.gradient} opacity-50 mix-blend-overlay`} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
             </motion.div>
 
             {/* Floating Stats Badge */}
@@ -227,7 +226,7 @@ const TechShowcase = ({ tech, index, isInView, isActive, setActive }) => {
               initial={{ opacity: 0, x: isEven ? -20 : 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -20 : 20 }}
               transition={{ delay: index * 0.2 + 0.4 }}
-              className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"
+              className="text-4xl md:text-5xl font-bold text-[#0A111A] mb-6 leading-tight"
             >
               {tech.title}
             </motion.h3>
@@ -235,7 +234,7 @@ const TechShowcase = ({ tech, index, isInView, isActive, setActive }) => {
               initial={{ opacity: 0, x: isEven ? -20 : 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -20 : 20 }}
               transition={{ delay: index * 0.2 + 0.5 }}
-              className="text-xl text-gray-400 leading-relaxed"
+              className="text-xl text-gray-600 leading-relaxed"
             >
               {tech.description}
             </motion.p>
@@ -254,7 +253,7 @@ const TechShowcase = ({ tech, index, isInView, isActive, setActive }) => {
                 <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${tech.gradient} flex items-center justify-center flex-shrink-0`}>
                   <CheckCircle2 size={12} className="text-white" />
                 </div>
-                <span className="text-gray-300 font-medium text-sm">
+                <span className="text-gray-700 font-medium text-sm">
                   {feature}
                 </span>
               </motion.div>

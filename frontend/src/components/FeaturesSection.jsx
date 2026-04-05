@@ -159,7 +159,7 @@ const FeatureItem = ({ feature, index }) => {
           <p className="text-gray-700 italic mb-6 text-lg leading-relaxed relative z-10">
             "{feature.quote.text}"
           </p>
-          <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center justify-between relative z-10 mb-6">
             <div>
               <p className="font-bold text-[#0A111A] text-lg">
                 {feature.quote.author}
@@ -176,22 +176,16 @@ const FeatureItem = ({ feature, index }) => {
               <ArrowUpRight size={20} className="text-[#0A111A]" />
             </motion.div>
           </div>
-        </motion.div>
 
-        {/* Learn More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.6 }}
-        >
+          {/* Learn More Button Inside Quote Card */}
           <motion.a
             href={`/services/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-[#FFCC00] text-[#0A111A] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 group/btn"
+            whileHover={{ scale: 1.02, x: 2 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative z-10 inline-flex items-center gap-2 bg-[#FFCC00] text-[#0A111A] px-6 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300 group/btn"
           >
-            <span>Learn More About {feature.title}</span>
-            <ArrowUpRight size={20} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+            <span>Learn More</span>
+            <ArrowUpRight size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
           </motion.a>
         </motion.div>
       </motion.div>

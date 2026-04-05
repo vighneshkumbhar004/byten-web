@@ -70,12 +70,12 @@ export const features = [
   },
   {
     id: 4,
-    title: "Digiphuctux",
-    description: "Digital transformation solutions leveraging cutting-edge geospatial technology and data analytics. We convert physical infrastructure into intelligent digital assets, enabling data-driven decision making and operational excellence through advanced digital workflows and automated reporting systems.",
+    title: "Digital Twin Creation",
+    description: "Advanced LiDAR 3D building scanning technology that creates precise digital replicas of your infrastructure. Used extensively in construction monitoring and maintenance, our digital twin solutions enable real-time 3D visualization, predictive analytics, and lifecycle management of physical assets.",
     quote: {
-      text: "Their digital solutions revolutionized our asset management. We now have complete digital control over our operations.",
-      author: "Head of Digital Transformation",
-      company: "Smart City Initiative"
+      text: "The 3D digital twin of our facility has revolutionized maintenance planning. We can now predict issues before they occur.",
+      author: "Head of Infrastructure",
+      company: "Industrial Complex Management"
     },
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
     imagePosition: "right"

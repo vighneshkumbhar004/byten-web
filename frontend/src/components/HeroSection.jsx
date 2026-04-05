@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { heroData, statsData } from '../mock/mockData';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { heroData } from '../mock/mockData';
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
 import { requestDemo } from '../services/api';
@@ -14,86 +13,11 @@ import {
   DialogTitle,
 } from './ui/dialog';
 import { Input } from './ui/input';
-import {
-  fadeInUp,
-  staggerContainer,
-  staggerItem,
-  imageReveal
-} from '../utils/animations';
-
-// Animated Counter Component
-const AnimatedCounter = ({ end, label, duration = 2 }) => {
-  const [count, setCount] = useState(0);
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    let startTime;
-    let animationFrame;
-
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) / (duration * 1000);
-
-      if (progress < 1) {
-        const numericEnd = parseFloat(end);
-        const current = numericEnd * progress;
-        
-        if (end.includes('B+')) {
-          setCount(`${current.toFixed(1)}B+`);
-        } else if (end.includes('%')) {
-          setCount(`${current.toFixed(1)}%`);
-        } else if (end.includes('+')) {
-          setCount(`${Math.floor(current)}+`);
-        } else if (end.includes('cm')) {
-          setCount(`${current.toFixed(1)}cm`);
-        } else {
-          setCount(Math.floor(current));
-        }
-        
-        animationFrame = requestAnimationFrame(animate);
-      } else {
-        setCount(end);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
-  }, [end, duration, isInView]);
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={staggerItem}
-      className="text-center"
-    >
-      <div className="text-3xl md:text-4xl font-bold text-[#FFCC00] mb-2">
-        {count}
-      </div>
-      <div className="text-sm md:text-base text-gray-600 font-medium">
-        {label}
-      </div>
-    </motion.div>
-  );
-};
 
 const HeroSection = () => {
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const dashboardImages = [
-    "https://images.unsplash.com/photo-1583932692931-7929f3c35e6a?w=800",
-    "https://images.pexels.com/photos/4558710/pexels-photo-4558710.jpeg?w=800",
-    "https://images.pexels.com/photos/6366444/pexels-photo-6366444.jpeg?w=800"
-  ];
 
   const handleDemoRequest = async (e) => {
     e.preventDefault();
@@ -141,7 +65,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -169,56 +93,7 @@ const HeroSection = () => {
                 </Button>
               </motion.div>
             </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
-            >
-              {statsData.map((stat, index) => (
-                <AnimatedCounter
-                  key={index}
-                  end={stat.value}
-                  label={stat.label}
-                  duration={2}
-                />
-              ))}
-            </motion.div>
           </div>
-
-          {/* Dashboard Images */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="relative max-w-5xl mx-auto"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {dashboardImages.map((img, index) => (
-                <motion.div 
-                  key={index}
-                  variants={imageReveal}
-                  custom={index}
-                  whileHover={{ scale: 1.05, zIndex: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative rounded-xl overflow-hidden shadow-2xl"
-                  style={{
-                    marginTop: index === 1 ? '2rem' : '0',
-                    marginBottom: index === 1 ? '0' : '2rem'
-                  }}
-                >
-                  <img 
-                    src={img} 
-                    alt={`Dashboard ${index + 1}`}
-                    className="w-full h-64 md:h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A111A]/30 to-transparent"></div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 

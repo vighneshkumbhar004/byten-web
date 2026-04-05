@@ -2,14 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { products } from '../mock/mockData';
-import { Building2, Zap, Map, CheckCircle } from 'lucide-react';
+import { Target, Zap, ShieldCheck, Users, CheckCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 
 const iconMap = {
-  Building2: Building2,
+  Target: Target,
   Zap: Zap,
-  Map: Map
+  ShieldCheck: ShieldCheck,
+  Users: Users
 };
 
 const ProductGrid = () => {
@@ -26,10 +27,10 @@ const ProductGrid = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#0A111A] mb-4">
-            Comprehensive Solutions
+            Why Byten
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            End-to-end geospatial intelligence platform designed for enterprise-scale operations
+            Precision, speed, compliance, and expertise—everything you need for mission-critical geospatial intelligence
           </p>
         </motion.div>
 
@@ -37,7 +38,7 @@ const ProductGrid = () => {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {products.map((product) => {
             const IconComponent = iconMap[product.icon];

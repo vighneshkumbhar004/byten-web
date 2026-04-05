@@ -73,24 +73,31 @@ export const features = [
 export const products = [
   {
     id: 1,
-    title: "Infrastructure Monitoring",
-    description: "Continuous monitoring of highways, bridges, railways, and urban infrastructure with millimeter-level precision and AI-powered anomaly detection.",
-    icon: "Building2",
-    features: ["Crack Detection", "Deformation Analysis", "Asset Management", "Predictive Maintenance"]
+    title: "Precise Accuracy",
+    description: "We don't just fix problems—we prevent them. Our survey-grade precision delivers 0.3cm accuracy, ensuring you catch critical issues before they become costly failures.",
+    icon: "Target",
+    features: ["0.3cm Survey Precision", "AI-Powered Detection", "Millimeter-Level Accuracy", "Preventive Intelligence"]
   },
   {
     id: 2,
-    title: "Industrial Inspections",
-    description: "Comprehensive thermal, visual, and LiDAR inspections for power grids, solar farms, wind turbines, and industrial facilities—all delivered through our unified platform.",
+    title: "Fast Turn Around",
+    description: "We deliver high-quality results in record time. From data capture to actionable insights, our streamlined process ensures you get critical intelligence when you need it most.",
     icon: "Zap",
-    features: ["Thermal Analysis", "Hotspot Detection", "Vegetation Encroachment", "Automated Reporting"]
+    features: ["Rapid Deployment", "Real-Time Processing", "Quick Turnaround", "Instant Reporting"]
   },
   {
     id: 3,
-    title: "Smart City Solutions",
-    description: "Transform urban planning with high-resolution 3D city models, traffic analysis, flood modeling, and infrastructure optimization powered by geospatial AI.",
-    icon: "Map",
-    features: ["3D City Models", "Traffic Analytics", "Flood Mapping", "Urban Planning"]
+    title: "Regulatory Compliant",
+    description: "Fully certified and compliant with industry standards. DGCA licensed, ISO 9001:2015 certified, and NDMA empanelled—ensuring your projects meet all regulatory requirements.",
+    icon: "ShieldCheck",
+    features: ["DGCA Licensed", "ISO 9001:2015", "SOC 2 Type II", "NDMA Empanelled"]
+  },
+  {
+    id: 4,
+    title: "Expert Team",
+    description: "Backed by seasoned professionals with decades of combined experience in geospatial intelligence, AI, and infrastructure monitoring. Your success is powered by our expertise.",
+    icon: "Users",
+    features: ["Industry Veterans", "Technical Excellence", "24/7 Support", "Proven Track Record"]
   }
 ];
 

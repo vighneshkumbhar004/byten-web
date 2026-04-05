@@ -19,8 +19,8 @@ const LandingPage = () => {
       <TechSection />
       <FeaturesSection />
       <ProductGrid />
-      <ContactForm />
       <TrustedBySection />
+      <ContactForm />
       <Footer />
       
       {/* WhatsApp Widget */}

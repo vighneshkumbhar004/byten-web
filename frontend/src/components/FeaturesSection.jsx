@@ -177,6 +177,23 @@ const FeatureItem = ({ feature, index }) => {
             </motion.div>
           </div>
         </motion.div>
+
+        {/* Learn More Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.6 }}
+        >
+          <motion.a
+            href={`/services/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
+            whileHover={{ scale: 1.05, x: 5 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-3 bg-[#FFCC00] text-[#0A111A] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 group/btn"
+          >
+            <span>Learn More About {feature.title}</span>
+            <ArrowUpRight size={20} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+          </motion.a>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

@@ -31,13 +31,8 @@ const fields = [
   },
   {
     id: 6,
-    name: 'Government',
+    name: 'Government Agencies',
     image: 'https://images.unsplash.com/photo-1760553120312-2821bf54e767?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHBsYW5uaW5nJTIwY2l0eSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
-  },
-  {
-    id: 7,
-    name: 'Agencies',
-    image: 'https://images.unsplash.com/photo-1624222924285-c8e0951b1d18?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwbW9uaXRvcmluZyUyMG5hdHVyZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   }
 ];
 
@@ -45,8 +40,11 @@ const FieldsWeWorkUnder = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Duplicate fields for seamless infinite scroll
+  const duplicatedFields = [...fields, ...fields, ...fields];
+
   return (
-    <section className="py-20 bg-gray-50" ref={ref}>
+    <section className="py-20 bg-gray-50 overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -62,19 +60,19 @@ const FieldsWeWorkUnder = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
-        >
-          {fields.map((field) => {
-            return (
+        {/* Infinite Horizontal Scroll Container */}
+        <div className="relative">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+          
+          {/* Scrolling Track */}
+          <div className="flex animate-infinite-scroll hover:pause-animation">
+            {duplicatedFields.map((field, index) => (
               <motion.div
-                key={field.id}
-                variants={staggerItem}
+                key={`${field.id}-${index}`}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="relative h-32 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                className="relative flex-shrink-0 w-56 h-36 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group mx-3"
               >
                 {/* Background Image */}
                 <div 
@@ -87,14 +85,14 @@ const FieldsWeWorkUnder = () => {
                 
                 {/* Text */}
                 <div className="absolute inset-0 flex items-center justify-center p-4">
-                  <h3 className="font-bold text-base md:text-lg text-white text-center drop-shadow-lg">
+                  <h3 className="font-bold text-sm md:text-base text-white text-center drop-shadow-lg">
                     {field.name}
                   </h3>
                 </div>
               </motion.div>
-            );
-          })}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

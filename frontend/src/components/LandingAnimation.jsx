@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { companyInfo } from '../mock/mockData';
+import React from 'react';
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/HeroSection';
+import FeaturesSection from '../components/FeaturesSection';
+import TechSection from '../components/TechSection';
+import Footer from '../components/Footer';
 
 const LandingAnimation = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -217,5 +223,30 @@ const LandingAnimation = ({ onComplete }) => {
     </AnimatePresence>
   );
 };
+// Import your new wrapper component!
+import VantaBackground from '../components/VantaBackground';
+
+const LandingPage = () => {
+  return (
+    <div className="flex flex-col w-full">
+      <Navbar />
+      
+      {/* Hero Section stays out here so its video plays normally */}
+      <HeroSection />
+
+      {/* Everything wrapped inside VantaBackground will have the clouds behind it */}
+      <VantaBackground>
+        
+        <FeaturesSection />
+        <TechSection />
+        {/* Add ProductGrid, ContactForm, etc. here */}
+        
+      </VantaBackground>
+      
+      <Footer />
+    </div>
+  );
+};
+
 
 export default LandingAnimation;

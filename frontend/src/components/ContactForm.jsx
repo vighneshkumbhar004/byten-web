@@ -1,14 +1,51 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
 import { toast } from 'sonner';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, User, Building, MessageSquare, Send } from 'lucide-react';
 import { companyInfo } from '../mock/mockData';
 import { submitContactForm } from '../services/api';
 import { fadeInUp, slideInLeft, slideInRight } from '../utils/animations';
+
+const PremiumInput = ({ type, name, placeholder, value, onChange, required, isTextarea, Icon }) => {
+  return (
+    <div className="relative group">
+      <div className="absolute left-4 top-4 text-gray-500 peer-focus:text-[#FFCC00] transition-colors duration-300 z-10">
+        {Icon && <Icon size={20} className={value ? "text-[#FFCC00]" : ""} />}
+      </div>
+      {isTextarea ? (
+         <textarea
+            name={name}
+            value={value}
+            onChange={onChange}
+            required={required}
+            rows={4}
+            className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 pt-7 pb-3 text-gray-900 outline-none focus:border-[#FFCC00] focus:bg-gray-50 transition-all duration-300 peer placeholder-transparent resize-none shadow-sm font-sans"
+            placeholder={placeholder}
+         />
+      ) : (
+         <input
+            type={type}
+            name={name}
+            value={value}
+            onChange={onChange}
+            required={required}
+            className="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 pt-7 pb-3 text-gray-900 outline-none focus:border-[#FFCC00] focus:bg-gray-50 transition-all duration-300 peer placeholder-transparent shadow-sm font-sans"
+            placeholder={placeholder}
+         />
+      )}
+      <label className={`absolute left-12 text-gray-500 text-sm transition-all duration-300 pointer-events-none font-sans
+        peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-gray-900
+        ${value ? '-translate-y-3 text-xs text-gray-700' : 'top-4.5'}
+      `}>
+         {placeholder}
+      </label>
+      
+      {/* Subtle border glow on focus */}
+      <div className="absolute inset-0 rounded-xl border border-[#FFCC00] opacity-0 peer-focus:opacity-100 transition-opacity duration-300 pointer-events-none shadow-[0_0_15px_rgba(255,204,0,0.1)]" />
+    </div>
+  );
+};
 
 const ContactForm = () => {
   const ref = React.useRef(null);
@@ -52,75 +89,62 @@ const ContactForm = () => {
     setLoading(false);
   };
 
+  // Modern input field data array
+  const formFields = [
+    { type: 'text', name: 'name', placeholder: 'Full Name *', required: true, Icon: User },
+    { type: 'email', name: 'email', placeholder: 'Work Email *', required: true, Icon: Mail },
+    { type: 'text', name: 'company', placeholder: 'Company Name *', required: true, Icon: Building },
+    { type: 'tel', name: 'phone', placeholder: 'Phone Number', required: false, Icon: Phone },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+    <section id="contact" className="py-32 bg-transparent relative overflow-hidden z-10" ref={ref}>
+      {/* Subtle background decoration */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-200/40 to-transparent pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Information */}
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideInLeft}
+            className="pr-0 md:pr-10"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A111A] mb-6">
-              Ready to Transform Your Operations?
+            <div className="inline-block px-4 py-2 rounded-full bg-[#FFCC00]/20 text-white font-bold text-sm mb-6 border border-[#FFCC00]/50 font-sans tracking-wide">
+              Get in Touch
+            </div>
+            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 leading-tight drop-shadow-sm font-heading">
+              Ready to Transform Your <span className="text-[#FFCC00]">Operations?</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg font-sans">
               Schedule an intelligence briefing with our geospatial architects. 
-              We'll assess your infrastructure, understand your challenges, and 
-              demonstrate how our AI-powered platform delivers measurable ROI.
+              We'll assess your infrastructure and demonstrate measurable ROI.
             </p>
 
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex items-start"
-              >
-                <div className="bg-[#FFCC00] rounded-lg p-3 mr-4">
-                  <Mail className="text-[#0A111A]" size={24} />
-                </div>
-                <div>
-                  <p className="font-semibold text-[#0A111A] mb-1">Email</p>
-                  <p className="text-gray-600">{companyInfo.email}</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex items-start"
-              >
-                <div className="bg-[#FFCC00] rounded-lg p-3 mr-4">
-                  <MapPin className="text-[#0A111A]" size={24} />
-                </div>
-                <div>
-                  <p className="font-semibold text-[#0A111A] mb-1">Headquarters</p>
-                  <p className="text-gray-600">Pune, Maharashtra, India</p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Regional offices in Mumbai, Hyderabad, Bengaluru, Delhi
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="flex items-start"
-              >
-                <div className="bg-[#FFCC00] rounded-lg p-3 mr-4">
-                  <Phone className="text-[#0A111A]" size={24} />
-                </div>
-                <div>
-                  <p className="font-semibold text-[#0A111A] mb-1">Certifications</p>
-                  <p className="text-gray-600 text-sm">
-                    DGCA Licensed • ISO 9001:2015 • SOC 2 Type II • NDMA Empanelled
-                  </p>
-                </div>
-              </motion.div>
+            <div className="space-y-8">
+              {[
+                { icon: Mail, title: 'Email', text: companyInfo.email },
+                { icon: MapPin, title: 'Headquarters', text: 'Pune, Maharashtra, India', subtext: 'Regional offices in Mumbai, Hyderabad, Bengaluru, Delhi' },
+                { icon: Phone, title: 'Certifications', text: 'DGCA Licensed • ISO 9001:2015 • SOC 2 Type II • NDMA Empanelled' }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 0.2 + (i * 0.1), duration: 0.5 }}
+                  className="flex items-start group"
+                >
+                  <div className="bg-white shadow-sm group-hover:shadow-md group-hover:bg-[#FFCC00] group-hover:-translate-y-1 transition-all duration-300 rounded-2xl p-4 mr-6 border border-gray-100 flex-shrink-0">
+                    <item.icon className="text-[#FFCC00] group-hover:text-gray-900 transition-colors" size={28} />
+                  </div>
+                  <div className="pt-1">
+                    <p className="font-bold text-gray-900 text-lg mb-1 font-heading">{item.title}</p>
+                    <p className="text-gray-600 text-[1.05rem] leading-snug font-sans">{item.text}</p>
+                    {item.subtext && <p className="text-sm text-gray-500 mt-2 font-sans">{item.subtext}</p>}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
@@ -129,83 +153,54 @@ const ContactForm = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideInRight}
-            className="bg-[#0A111A] rounded-xl p-8 shadow-2xl"
+            className="relative w-full max-w-xl mx-auto lg:mx-0 lg:ml-auto"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">
-              Request an Intelligence Briefing
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name *"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-white border-none rounded-lg py-6 text-[#0A111A] placeholder:text-gray-400"
-                />
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#FFCC00] opacity-20 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500 opacity-10 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden">
+              {/* Glassmorphism accent */}
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#FFCC00] to-[#FFD633]" />
+              
+              <div className="mb-10 text-center">
+                <h3 className="text-3xl font-extrabold text-gray-900 mb-3 font-heading">
+                  Request a Briefing
+                </h3>
+                <p className="text-gray-500 text-sm font-sans">
+                  Connect with our experts. We usually respond within 2 hours.
+                </p>
               </div>
 
-              <div>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Work Email *"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-white border-none rounded-lg py-6 text-[#0A111A] placeholder:text-gray-400"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {formFields.slice(0, 2).map((field, i) => (
+                    <PremiumInput key={i} {...field} value={formData[field.name]} onChange={handleChange} />
+                  ))}
+                </div>
+                
+                {formFields.slice(2).map((field, i) => (
+                  <PremiumInput key={i} {...field} value={formData[field.name]} onChange={handleChange} />
+                ))}
 
-              <div>
-                <Input
-                  type="text"
-                  name="company"
-                  placeholder="Company Name *"
-                  value={formData.company}
-                  onChange={handleChange}
-                  required
-                  className="bg-white border-none rounded-lg py-6 text-[#0A111A] placeholder:text-gray-400"
+                <PremiumInput 
+                  isTextarea={true}
+                  name="message" 
+                  placeholder="Tell us about your infrastructure monitoring needs..." 
+                  value={formData.message} 
+                  onChange={handleChange} 
+                  required={false}
+                  Icon={MessageSquare}
                 />
-              </div>
 
-              <div>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="bg-white border-none rounded-lg py-6 text-[#0A111A] placeholder:text-gray-400"
-                />
-              </div>
-
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder="Tell us about your infrastructure monitoring needs..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="bg-white border-none rounded-lg text-[#0A111A] placeholder:text-gray-400 resize-none"
-                />
-              </div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button 
+                <button 
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-bold py-6 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className={`contact-submit button type1 ${loading ? 'is-loading' : ''}`}
                 >
-                  {loading ? 'Submitting...' : 'Schedule Briefing'}
-                </Button>
-              </motion.div>
-            </form>
+                </button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -214,3 +209,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+

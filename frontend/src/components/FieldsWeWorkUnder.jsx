@@ -44,7 +44,7 @@ const FieldsWeWorkUnder = () => {
   const duplicatedFields = [...fields, ...fields, ...fields];
 
   return (
-    <section className="py-20 bg-gray-50 overflow-hidden" ref={ref}>
+    <section id="industries" className="py-20 bg-transparent overflow-hidden relative z-10" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -52,10 +52,10 @@ const FieldsWeWorkUnder = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0A111A] mb-4">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-sm font-heading">
             Fields We Work Under
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto font-sans">
             Delivering precision geospatial intelligence across diverse industries
           </p>
         </motion.div>
@@ -63,8 +63,8 @@ const FieldsWeWorkUnder = () => {
         {/* Infinite Horizontal Scroll Container */}
         <div className="relative">
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black/50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black/50 to-transparent z-10 pointer-events-none" />
           
           {/* Scrolling Track */}
           <div className="flex animate-infinite-scroll hover:pause-animation">

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { heroData } from '../mock/mockData';
-import { Button } from './ui/button';
-import { ArrowRight } from 'lucide-react';
 import { requestDemo } from '../services/api';
 import { toast } from 'sonner';
 import {
@@ -38,15 +36,24 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="bg-white py-20 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="hero-section relative overflow-hidden py-32 bg-transparent font-sans">
+        <video
+          autoPlay
+          muted
+          loop
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/assets/herosectionvid.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 z-[1] pointer-events-none bg-black/40" />
+        <div className="hero-section-overlay-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
           {/* Hero Content */}
-          <div className="text-center mb-16">
+          <div className="hero-content text-center mb-16 px-4 lg:px-0 mt-12">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0A111A] mb-6 leading-tight"
+              className="text-6xl md:text-8xl font-extrabold text-[#FFCC00] mb-6 tracking-tight leading-[1.05] font-heading"
             >
               {heroData.headline}
             </motion.h1>
@@ -55,7 +62,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-lg md:text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-12 font-sans"
             >
               {heroData.subheadline}
             </motion.p>
@@ -71,26 +78,40 @@ const HeroSection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
+                <button 
                   onClick={() => setDemoDialogOpen(true)}
-                  className="bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="animated-demo-button font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  {heroData.primaryCTA}
-                  <ArrowRight className="ml-2" size={20} />
-                </Button>
+                  <div className="svg-wrapper-1">
+                    <div className="svg-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                          fill="currentColor"
+                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span>{heroData.primaryCTA}</span>
+                </button>
               </motion.div>
               
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  variant="outline"
+                <button 
                   onClick={() => document.getElementById('solutions')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-[#0A111A] text-white hover:bg-[#1A2130] border-[#0A111A] font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="animated-learn-more-btn font-bold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   {heroData.secondaryCTA}
-                </Button>
+                </button>
               </motion.div>
             </motion.div>
           </div>
@@ -115,13 +136,24 @@ const HeroSection = () => {
               required
               className="w-full"
             />
-            <Button 
+            <button 
               type="submit"
               disabled={loading}
-              className="w-full bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-semibold"
+              className="animated-submit-button w-full bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-semibold py-3 rounded-lg"
             >
-              {loading ? 'Submitting...' : 'Request Demo'}
-            </Button>
+              {loading ? (
+                'Submitting...'
+              ) : (
+                <div className="button">
+                  <div className="box">S</div>
+                  <div className="box">U</div>
+                  <div className="box">B</div>
+                  <div className="box">M</div>
+                  <div className="box">I</div>
+                  <div className="box">T</div>
+                </div>
+              )}
+            </button>
           </form>
         </DialogContent>
       </Dialog>

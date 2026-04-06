@@ -92,7 +92,7 @@ const FeatureItem = ({ feature, index }) => {
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ delay: 0.4 }}
-            className="absolute -left-6 top-8 bg-[#0A111A] text-[#FFCC00] w-16 h-16 rounded-xl flex items-center justify-center text-2xl font-bold shadow-xl"
+            className="absolute -left-6 top-8 bg-white text-[#FFCC00] w-16 h-16 rounded-xl flex items-center justify-center text-2xl font-bold font-heading shadow-xl border border-gray-100/50"
           >
             0{index + 1}
           </motion.div>
@@ -109,7 +109,7 @@ const FeatureItem = ({ feature, index }) => {
         {/* Title with Animated Underline */}
         <div className="relative inline-block">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-[#0A111A] mb-2 relative z-10"
+            className="text-4xl md:text-5xl font-extrabold text-white mb-2 relative z-10 font-heading"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.2 }}
@@ -125,7 +125,7 @@ const FeatureItem = ({ feature, index }) => {
         </div>
         
         <motion.p 
-          className="text-lg text-gray-600 leading-relaxed"
+          className="text-lg text-gray-300 leading-relaxed drop-shadow-sm font-sans"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.3 }}
@@ -139,14 +139,14 @@ const FeatureItem = ({ feature, index }) => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.5, duration: 0.6 }}
           whileHover={{ y: -5 }}
-          className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 border border-gray-100 shadow-lg overflow-hidden group/quote"
+          className="relative bg-white rounded-2xl p-8 border border-gray-100 shadow-md overflow-hidden group/quote"
         >
           {/* Animated Background Element */}
           <motion.div
-            className="absolute -right-8 -top-8 w-32 h-32 bg-[#FFCC00] opacity-5 rounded-full blur-3xl"
+            className="absolute -right-8 -top-8 w-32 h-32 bg-[#FFCC00] opacity-10 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.05, 0.1, 0.05]
+              opacity: [0.05, 0.15, 0.05]
             }}
             transition={{
               duration: 4,
@@ -156,37 +156,30 @@ const FeatureItem = ({ feature, index }) => {
           />
           
           <Quote className="text-[#FFCC00] mb-4 opacity-80" size={36} />
-          <p className="text-gray-700 italic mb-6 text-lg leading-relaxed relative z-10">
+          <p className="text-gray-600 italic mb-6 text-lg leading-relaxed relative z-10 font-sans">
             "{feature.quote.text}"
           </p>
           <div className="flex items-center justify-between relative z-10 mb-6">
             <div>
-              <p className="font-bold text-[#0A111A] text-lg">
+              <p className="font-bold text-gray-900 text-lg font-heading">
                 {feature.quote.author}
               </p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 mt-1 font-sans">
                 {feature.quote.company}
               </p>
             </div>
-            <motion.div
-              className="w-10 h-10 rounded-full bg-[#FFCC00] flex items-center justify-center opacity-0 group-hover/quote:opacity-100"
-              whileHover={{ scale: 1.1, rotate: 45 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ArrowUpRight size={20} className="text-[#0A111A]" />
-            </motion.div>
           </div>
 
           {/* Learn More Button Inside Quote Card */}
-          <motion.a
-            href={`/services/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
-            whileHover={{ scale: 1.02, x: 2 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative z-10 inline-flex items-center gap-2 bg-[#FFCC00] text-[#0A111A] px-6 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300 group/btn"
+          <button 
+            className="learn-more relative z-10"
+            onClick={() => window.location.href = `/services/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
           >
-            <span>Learn More</span>
-            <ArrowUpRight size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-          </motion.a>
+            <span className="circle" aria-hidden="true">
+            <span className="icon arrow"></span>
+            </span>
+            <span className="button-text text-gray-900 font-bold font-sans">Learn More</span>
+          </button>
         </motion.div>
       </motion.div>
     </motion.div>
@@ -195,43 +188,12 @@ const FeatureItem = ({ feature, index }) => {
 
 const FeaturesSection = () => {
   return (
-    <section id="solutions" className="py-32 bg-white relative overflow-hidden">
-      {/* Premium Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-transparent to-gray-50/50 pointer-events-none" />
-      
+    <section id="solutions" className="py-32 bg-transparent relative overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {features.map((feature, index) => (
           <FeatureItem key={feature.id} feature={feature} index={index} />
         ))}
       </div>
-      
-      {/* Decorative Elements */}
-      <motion.div
-        className="absolute top-20 right-10 w-64 h-64 bg-[#FFCC00] opacity-5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 50, 0],
-          y: [0, 30, 0]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-40 left-10 w-96 h-96 bg-[#0A111A] opacity-3 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, -30, 0],
-          y: [0, 50, 0]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
     </section>
   );
 };

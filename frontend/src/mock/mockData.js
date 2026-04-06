@@ -5,7 +5,7 @@ export const companyInfo = {
   tagline: "AI-Powered Geospatial Intelligence & Drone Analytics",
   email: "intelligence@bytengeomapping.com",
   website: "www.bytengeomapping.com",
-  logo: "https://customer-assets.emergentagent.com/job_yellow-cta-pro/artifacts/mh0bslke_WhatsApp%20Image%202026-03-30%20at%2019.12.53.jpeg"
+  logo: "/assets/byten-logo.jpeg"
 };
 
 export const heroData = {
@@ -117,7 +117,7 @@ export const navLinks = [
   { name: "Solutions", href: "#solutions" },
   { name: "Industries", href: "#industries" },
   { name: "Technology", href: "#technology" },
-  { name: "Case Studies", href: "#cases" },
+  { name: "Why Byten", href: "#why-byten" },
   { name: "Contact", href: "#contact" }
 ];
 

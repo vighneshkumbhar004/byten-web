@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { companyInfo, navLinks } from '../mock/mockData';
@@ -27,6 +27,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   
   const [demoForm, setDemoForm] = useState({
     fullName: '',
@@ -45,6 +46,13 @@ const Navbar = () => {
   const handleInputChange = (field, value) => {
     setDemoForm(prev => ({ ...prev, [field]: value }));
   };
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleDemoRequest = async (e) => {
     e.preventDefault();
@@ -82,7 +90,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className="bg-white shadow-sm sticky top-0 z-50"
+        className={`absolute inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-black/20 shadow-lg shadow-black/20' : 'bg-transparent'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -116,7 +124,7 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
-                  className="text-[#0A111A] hover:text-[#FFCC00] font-medium transition-colors duration-200"
+                  className="text-white hover:text-sky-300 font-medium transition-colors duration-200"
                 >
                   {link.name}
                 </motion.a>
@@ -136,7 +144,7 @@ const Navbar = () => {
               >
                 <Button 
                   onClick={() => setDemoDialogOpen(true)}
-                  className="bg-[#FFCC00] text-[#0A111A] hover:bg-[#FFD633] font-semibold px-6 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
+                  className="bg-[#2563EB] text-white hover:bg-[#1D4ED8] font-semibold px-6 py-2 rounded-2xl shadow-xl shadow-sky-600/30 transition-all duration-200"
                 >
                   Request a Demo
                 </Button>
@@ -147,7 +155,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-[#0A111A] p-2"
+                className="text-white p-2"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -165,11 +173,11 @@ const Navbar = () => {
                 className="md:hidden pb-4 overflow-hidden"
               >
                 <div className="flex flex-col space-y-4">
-                  {navLinks.map((link) => (
+                      {navLinks.map((link) => (
                     <a
                       key={link.name}
                       href={link.href}
-                      className="text-[#0A111A] hover:text-[#FFCC00] font-medium transition-colors duration-200"
+                      className="text-white hover:text-sky-300 font-medium transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.name}

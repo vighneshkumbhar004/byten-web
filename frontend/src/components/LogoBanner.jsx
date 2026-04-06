@@ -6,17 +6,17 @@ const TrustedBySection = () => {
   const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
-    <section className="bg-white py-16 overflow-hidden">
+    <section className="bg-transparent relative z-10 py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-500 font-medium mb-10 uppercase tracking-wider text-sm">
+        <p className="text-center text-gray-300 font-sans drop-shadow-sm font-medium mb-10 uppercase tracking-wider text-sm">
           Trusted by Leading Enterprises
         </p>
         
         {/* Infinite Scroll Container */}
         <div className="relative">
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black/50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black/50 to-transparent z-10 pointer-events-none" />
           
           {/* Scrolling Track */}
           <div className="flex animate-infinite-scroll hover:pause-animation">

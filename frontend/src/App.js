@@ -4,17 +4,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import LandingPage from "./pages/LandingPage";
 import ServiceDetail from "./pages/ServiceDetail";
+import VantaBackground from "./components/VantaBackground";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/services/:serviceName" element={<ServiceDetail />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster position="top-right" />
+      <VantaBackground>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/services/:serviceName" element={<ServiceDetail />} />
+          </Routes>
+        </BrowserRouter>
+        <Toaster position="top-right" />
+      </VantaBackground>
     </div>
   );
 }

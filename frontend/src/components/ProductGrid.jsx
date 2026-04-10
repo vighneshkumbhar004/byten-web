@@ -62,10 +62,10 @@ const ProductGrid = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-sm font-heading">
-            Why Byten
+            Why Choose Byten Geomapping
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto font-sans">
-            Precision, speed, compliance, and expertise—everything you need for mission-critical geospatial intelligence
+            Delivering survey-grade accuracy, regulatory compliance, and dependable field execution for critical geospatial projects.
           </p>
         </motion.div>
 

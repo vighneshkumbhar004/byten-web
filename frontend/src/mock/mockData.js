@@ -3,7 +3,7 @@
 export const companyInfo = {
   name: "Byten Geomapping Technologies",
   tagline: "AI-Powered Geospatial Intelligence & Drone Analytics",
-  email: "intelligence@bytengeomapping.com",
+  email: "byten0202@gmail.com",
   website: "www.bytengeomapping.com",
   logo: "/assets/byten-logo.jpeg"
 };
@@ -16,68 +16,70 @@ export const heroData = {
 };
 
 export const statsData = [
-  { value: "2.4B+", label: "Data Points Processed" },
-  { value: "98.7%", label: "AI Detection Accuracy" },
-  { value: "140+", label: "Enterprise Deployments" },
+  { value: "500+", label: "Projects Completed" },
+  { value: "10,000+", label: "Acres Mapped" },
+  { value: "99.7%", label: "Accuracy" },
   { value: "0.3cm", label: "Survey Precision" }
 ];
 
 export const clientLogos = [
-  { name: "Client 1", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Enterprise+Client" },
-  { name: "Client 2", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Infrastructure+Co" },
-  { name: "Client 3", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Smart+Cities" },
-  { name: "Client 4", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Energy+Corp" },
-  { name: "Client 5", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Mining+Group" },
-  { name: "Client 6", logo: "https://via.placeholder.com/150x50/E8E8E8/666666?text=Govt+Agency" }
+  { name: "Essar", logo: "/client-logos/Essar_logo.svg.png" },
+  { name: "HPCL", logo: "/client-logos/Hindustan_Petroleum-Logo.wine.png" },
+  { name: "BPCL", logo: "/client-logos/Official_BPCL_LOGO.jpg" },
+  { name: "Indian Oil", logo: null },
+  { name: "Siemens Energy", logo: "/client-logos/power.png" },
+  { name: "Megha Engineering (MEIL)", logo: null },
+  { name: "DMart", logo: "/client-logos/dmart.png" },
+  { name: "Café Coffee Day", logo: "/client-logos/images.png" }
 ];
 
 export const features = [
   {
     id: 1,
     title: "Surveying",
-    description: "Precision geospatial data capture through advanced 3D land mapping, drone technology, and DGPS control points. We deliver millimeter-accurate surveys for infrastructure projects, land development, and site planning with cutting-edge aerial and ground-based mapping solutions.",
+    description: "Delivering survey-grade geospatial data using UAV photogrammetry, RTK/PPK positioning, and DGPS control points. Our workflows ensure accurate terrain modeling, measurement, and site intelligence for infrastructure, land development, and engineering projects.",
     quote: {
-      text: "The 3D mapping accuracy exceeded our expectations. Byten's drone surveys saved us weeks of traditional surveying work.",
+      text: "The 3D mapping accuracy exceeded our expectations. Drone surveys reduced weeks of manual work into just days.",
       author: "Project Manager",
-      company: "Infrastructure Development Corp"
+      company: "Megha Engineering (MEIL)"
     },
-    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800",
     imagePosition: "left"
   },
   {
     id: 2,
     title: "Inspection",
-    description: "Comprehensive inspection services including thermal imaging, power grid monitoring, construction site analysis, and factory assessments. Our advanced inspection technology identifies issues before they become critical, ensuring safety and operational efficiency across all industrial applications.",
+    description: "Delivering high-precision UAV-based inspections for solar plants, power lines, industrial facilities, and construction sites. Our workflows enable safe, fast, and accurate assessment of critical assets without operational disruption.",
     quote: {
-      text: "Thermal inspections of our power grid revealed hotspots we never knew existed. This prevented potential equipment failures.",
+      text: "Thermal inspections revealed critical hotspots we couldn't detect earlier, preventing major failures.",
       author: "Chief Operations Officer",
-      company: "Energy Infrastructure"
+      company: "Energy Sector"
     },
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800",
+    image: "/Inspection.jpg",
     imagePosition: "right"
   },
   {
     id: 3,
     title: "Videography",
-    description: "Professional aerial and ground videography for infrastructure mapping, site security monitoring, and project documentation. Our high-resolution video capture provides real-time surveillance and comprehensive visual records for construction progress tracking and security applications.",
+    description: "Delivering high-resolution aerial and ground videography for infrastructure monitoring, project documentation, security surveillance, and official reporting. Designed for organizations that require clear, reliable, and scalable visual insights.",
     quote: {
       text: "The aerial videography transformed how we monitor site security and track construction progress across multiple locations.",
       author: "Security Director",
       company: "Commercial Real Estate"
     },
-    image: "https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=800",
+    image: "/Videography.jpg",
     imagePosition: "left"
   },
   {
     id: 4,
     title: "Digital Twin Creation",
-    description: "Advanced LiDAR 3D building scanning technology that creates precise digital replicas of your infrastructure. Used extensively in construction monitoring and maintenance, our digital twin solutions enable real-time 3D visualization, predictive analytics, and lifecycle management of physical assets.",
+    description: "Creating accurate digital replicas of physical assets using LiDAR, photogrammetry, and high-precision sensor data. Our digital twin solutions enable detailed visualization, measurement, and monitoring of infrastructure across its lifecycle.",
     quote: {
       text: "The 3D digital twin of our facility has revolutionized maintenance planning. We can now predict issues before they occur.",
       author: "Head of Infrastructure",
       company: "Industrial Complex Management"
     },
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+    image: "/Digital-Twin.jpg",
     imagePosition: "right"
   }
 ];
@@ -85,31 +87,31 @@ export const features = [
 export const products = [
   {
     id: 1,
-    title: "Precise Accuracy",
-    description: "We don't just fix problems—we prevent them. Our survey-grade precision delivers 0.3cm accuracy, ensuring you catch critical issues before they become costly failures.",
+    title: "Survey-Grade Accuracy",
+    description: "High-precision geospatial data acquisition using RTK/PPK-enabled UAV systems. Achieve sub-centimeter accuracy for reliable mapping, measurement, and analysis.",
     icon: "Target",
-    features: ["0.3cm Survey Precision", "AI-Powered Detection", "Millimeter-Level Accuracy", "Preventive Intelligence"]
+    features: ["Orthomosaic Generation", "DSM/DEM Outputs", "Sub-centimeter Accuracy", "Reliable Geospatial Data"]
   },
   {
     id: 2,
-    title: "Fast Turn Around",
-    description: "We deliver high-quality results in record time. From data capture to actionable insights, our streamlined process ensures you get critical intelligence when you need it most.",
+    title: "Efficient Project Turnaround",
+    description: "Optimised workflows from field data capture to processed outputs ensure faster delivery without compromising accuracy.",
     icon: "Zap",
-    features: ["Rapid Deployment", "Real-Time Processing", "Quick Turnaround", "Instant Reporting"]
+    features: ["Rapid Field Deployment", "Structured Data Processing", "Timely Deliverables", "Scalable Operations"]
   },
   {
     id: 3,
-    title: "Regulatory Compliant",
-    description: "Fully certified and compliant with industry standards. DGCA licensed, ISO 9001:2015 certified, and NDMA empanelled—ensuring your projects meet all regulatory requirements.",
+    title: "Regulatory & Operational Compliance",
+    description: "Fully aligned with aviation and industry standards to ensure safe, legal, and compliant drone operations across all project sites.",
     icon: "ShieldCheck",
-    features: ["DGCA Licensed", "ISO 9001:2015", "SOC 2 Type II", "NDMA Empanelled"]
+    features: ["DGCA Licensed Operations", "ISO 9001:2015 Certified", "NDMA Empanelled", "Standardised Safety Protocols"]
   },
   {
     id: 4,
-    title: "Expert Team",
-    description: "Backed by seasoned professionals with decades of combined experience in geospatial intelligence, AI, and infrastructure monitoring. Your success is powered by our expertise.",
+    title: "Experienced Field & Survey Team",
+    description: "A team of trained UAV pilots, survey engineers, and geospatial analysts delivering accurate and dependable results across diverse terrains.",
     icon: "Users",
-    features: ["Industry Veterans", "Technical Excellence", "24/7 Support", "Proven Track Record"]
+    features: ["Certified UAV Pilots", "Survey & Mapping Experts", "On-Ground Execution Experience", "Proven Project Delivery"]
   }
 ];
 

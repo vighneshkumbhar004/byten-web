@@ -8,8 +8,11 @@ const TrustedBySection = () => {
   return (
     <section className="bg-transparent relative z-10 py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-300 font-sans drop-shadow-sm font-medium mb-10 uppercase tracking-wider text-sm">
+        <p className="text-center text-gray-300 font-sans drop-shadow-sm font-medium mb-2 uppercase tracking-wider text-sm">
           Trusted by Leading Enterprises
+        </p>
+        <p className="text-center text-gray-400 font-sans text-xs mb-10">
+          Partnering with industry leaders across energy, infrastructure, construction, and government sectors.
         </p>
         
         {/* Infinite Scroll Container */}
@@ -23,13 +26,21 @@ const TrustedBySection = () => {
             {duplicatedLogos.map((client, index) => (
               <div 
                 key={index}
-                className="flex items-center justify-center flex-shrink-0 w-48 mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                className="flex items-center justify-center flex-shrink-0 mx-8 opacity-75 hover:opacity-100 transition-all duration-300"
               >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="h-12 w-auto object-contain"
-                />
+                {client.logo ? (
+                  <div className="bg-white rounded-xl px-5 py-3 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center" style={{minWidth: '130px', height: '56px'}}>
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="h-8 w-auto object-contain max-w-[110px]"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-white font-bold text-base tracking-wide whitespace-nowrap border border-white/20 rounded-xl px-5 py-3 bg-white/5 hover:bg-white/10 hover:border-[#FFCC00]/50 hover:text-[#FFCC00] transition-all duration-300 font-heading">
+                    {client.name}
+                  </span>
+                )}
               </div>
             ))}
           </div>

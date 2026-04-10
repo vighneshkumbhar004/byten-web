@@ -6,33 +6,39 @@ import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 const fields = [
   {
     id: 1,
-    name: 'Infrastructure',
-    image: 'https://images.unsplash.com/photo-1768174004465-8afe7a180052?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxpbmZyYXN0cnVjdHVyZSUyMGNvbnN0cnVjdGlvbiUyMGFlcmlhbCUyMHZpZXd8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
-  },
-  {
-    id: 2,
     name: 'Energy',
+    description: 'Advanced inspection & monitoring for solar, wind, and power infrastructure using thermal and LiDAR technologies.',
     image: 'https://images.unsplash.com/photo-1765263857986-271b4923632d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbmVyZ3klMjBwb3dlciUyMHJlbmV3YWJsZSUyMHNvbGFyJTIwd2luZHxlbnwwfHx8fDE3NzUzOTc3NDZ8MA&ixlib=rb-4.1.0&q=85'
   },
   {
-    id: 3,
+    id: 2,
     name: 'Construction',
+    description: 'Real-time construction tracking, volumetric analysis, and digital twins for project lifecycle management.',
     image: 'https://images.unsplash.com/photo-1663058480199-acbc638bf21a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGUlMjB3b3JrZXJzfGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
   },
   {
-    id: 4,
+    id: 3,
     name: 'Mining',
+    description: 'High-precision terrain mapping, stockpile analysis, and operational monitoring for mining efficiency.',
     image: 'https://images.unsplash.com/photo-1772543983082-a8a8051ab612?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBxdWFycnklMjBleGNhdmF0aW9ufGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
   },
   {
-    id: 5,
+    id: 4,
     name: 'Agriculture',
+    description: 'AI-driven crop health analysis using multispectral imaging and environmental mapping.',
     image: 'https://images.unsplash.com/photo-1721594489446-7fd9d30a3d71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyZSUyMGZhcm1pbmclMjBhZXJpYWx8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   },
   {
-    id: 6,
+    id: 5,
     name: 'Government Agencies',
+    description: 'Surveying, surveillance, and smart city mapping solutions for public sector and infrastructure planning.',
     image: 'https://images.unsplash.com/photo-1760553120312-2821bf54e767?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHBsYW5uaW5nJTIwY2l0eSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
+  },
+  {
+    id: 6,
+    name: 'Infrastructure',
+    description: 'End-to-end mapping, inspection, and analytics for roads, railways, pipelines, and utilities.',
+    image: 'https://images.unsplash.com/photo-1768174004465-8afe7a180052?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxpbmZyYXN0cnVjdHVyZSUyMGNvbnN0cnVjdGlvbiUyMGFlcmlhbCUyMHZpZXd8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
   }
 ];
 
@@ -53,10 +59,10 @@ const FieldsWeWorkUnder = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-sm font-heading">
-            Fields We Work Under
+            Industries We Serve
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto font-sans">
-            Delivering precision geospatial intelligence across diverse industries
+            Delivering survey-grade geospatial solutions across infrastructure, energy, and industrial sectors.
           </p>
         </motion.div>
 
@@ -84,10 +90,15 @@ const FieldsWeWorkUnder = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/90 group-hover:via-black/50 transition-all duration-300" />
                 
                 {/* Text */}
-                <div className="absolute inset-0 flex items-center justify-center p-4">
-                  <h3 className="font-bold text-sm md:text-base text-white text-center drop-shadow-lg">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                  <h3 className="font-bold text-sm md:text-base text-white text-center drop-shadow-lg mb-1">
                     {field.name}
                   </h3>
+                  {field.description && (
+                    <p className="text-white/80 text-[10px] text-center leading-tight opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
+                      {field.description}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             ))}

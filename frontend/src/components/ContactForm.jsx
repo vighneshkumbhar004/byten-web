@@ -118,8 +118,7 @@ const ContactForm = () => {
               Ready to Transform Your <span className="text-[#FFCC00]">Operations?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg font-sans">
-              Schedule an intelligence briefing with our geospatial architects. 
-              We'll assess your infrastructure and demonstrate measurable ROI.
+              Leverage drone intelligence, AI analytics, and precision mapping to accelerate your business outcomes.
             </p>
 
             <div className="space-y-8">
@@ -168,7 +167,7 @@ const ContactForm = () => {
                   Request a Briefing
                 </h3>
                 <p className="text-gray-500 text-sm font-sans">
-                  Connect with our experts. We usually respond within 2 hours.
+                  Connect with our experts to discuss your project requirements. We typically respond within 2 hours.
                 </p>
               </div>
 

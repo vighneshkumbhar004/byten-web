@@ -1,8 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-const ShaderBackground = () => {
-  const canvasRef = useRef(null);
-
 // Vertex shader source code
 const vsSource = `
   attribute vec4 aVertexPosition;

@@ -32,19 +32,19 @@ const TechSection = () => {
               <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
                 <Zap className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-3 font-heading">Advanced UAVs</h3>
+              <h3 className="text-3xl font-bold text-white mb-3 font-heading">Drone-Based Survey & Mapping</h3>
               <p className="text-gray-300 mb-2 leading-relaxed font-sans">
-                Professional UAV Platforms for Geospatial Operations
+                High-accuracy aerial surveys using drone-integrated DGPS systems. Capture large-scale terrain data, infrastructure layouts, and topographic details with speed and precision.
               </p>
               <ul className="space-y-3 mb-4">
-                {['Long-range mission capability (up to 50km)', 'Autonomous survey flight planning', 'RTK/PPK enabled positioning', 'Stable performance in harsh environments'].map((feat, i) => (
+                {['DGPS Integrated Mapping', 'High-Resolution Aerial Imaging', 'Large Area Coverage', 'Accurate Georeferenced Data'].map((feat, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-gray-200 font-medium font-sans">
                     <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
                     {feat}
                   </li>
                 ))}
               </ul>
-              <p className="text-[#FFCC00] text-sm font-bold mt-4 font-sans italic">Built for field reliability.</p>
+              <p className="text-[#FFCC00] text-sm font-bold mt-4 font-sans italic">PRECISION AERIAL SURVEYING</p>
             </div>
             <div className="relative shrink-0 perspective-1000">
               <div className="w-64 h-72 sm:w-72 sm:h-80 rounded-3xl overflow-hidden border-4 border-white shadow-2xl relative bg-blue-900">
@@ -72,18 +72,19 @@ const TechSection = () => {
               <div className="w-12 h-12 bg-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-pink-500/30">
                 <Camera className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-3 font-heading">LiDAR & Thermal Intelligence</h3>
+              <h3 className="text-3xl font-bold text-white mb-3 font-heading">LiDAR & Thermal Survey Solutions</h3>
               <p className="text-gray-300 mb-2 leading-relaxed font-sans">
-                LiDAR Mapping & Thermal Inspection Systems
+                Capture terrain, structures, and hidden anomalies using LiDAR and thermal imaging. Generate accurate 3D models, detect faults, and analyze surface conditions efficiently.
               </p>
               <ul className="grid grid-cols-2 gap-3 mb-4">
-                {['High-density point cloud generation', 'Sub-centimeter terrain modeling', 'Thermal inspection for solar & industrial assets', 'Accurate elevation & contour mapping'].map((feat, i) => (
+                {['3D Point Cloud Generation', 'Thermal Inspection Analysis', 'Digital Surface & Terrain Models', 'High-Precision Data Capture'].map((feat, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-gray-200 font-medium font-sans whitespace-nowrap">
                     <CheckCircle2 className="w-5 h-5 text-pink-500 shrink-0" />
                     <span className="truncate">{feat}</span>
                   </li>
                 ))}
               </ul>
+              <p className="text-[#FFCC00] text-sm font-bold mt-4 font-sans italic">ADVANCED MAPPING TECHNOLOGY</p>
             </div>
           </div>
 
@@ -93,18 +94,19 @@ const TechSection = () => {
               <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
                 <Brain className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-3 font-heading">Geospatial Data Processing & Analysis</h3>
+              <h3 className="text-3xl font-bold text-white mb-3 font-heading">GIS & Data Analysis</h3>
               <p className="text-gray-300 mb-2 leading-relaxed font-sans">
-                Geospatial Data Processing & Analysis
+                Transform raw survey data into actionable insights using GIS and spatial analysis. From mapping to decision support, we deliver structured, usable geospatial intelligence.
               </p>
               <ul className="grid grid-cols-2 gap-3 mb-4">
-                {['Orthomosaic Generation', 'Digital Surface & Elevation Models (DSM/DEM)', 'Volume & Contour Calculations', 'Asset Inspection Reports'].map((feat, i) => (
+                {['Spatial Data Analysis', 'Mapping & Visualization', 'Data Processing & Integration', 'Decision Support Systems'].map((feat, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-gray-200 font-medium font-sans whitespace-nowrap">
                     <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
                     <span className="truncate">{feat}</span>
                   </li>
                 ))}
               </ul>
+              <p className="text-[#FFCC00] text-sm font-bold mt-4 font-sans italic">GEOSPATIAL DATA PROCESSING</p>
             </div>
             <div className="relative shrink-0">
               <div className="w-64 h-72 sm:w-72 sm:h-80 rounded-3xl overflow-hidden border-4 border-white shadow-2xl relative bg-orange-900">

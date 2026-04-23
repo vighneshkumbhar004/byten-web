@@ -4,6 +4,9 @@ export const companyInfo = {
   name: "Byten Geomapping Technologies",
   tagline: "AI-Powered Geospatial Intelligence & Drone Analytics",
   email: "byten0202@gmail.com",
+  phone: "7391822211",
+  address: "Pune, Maharashtra, India",
+  addressUrl: "https://maps.app.goo.gl/QyEzmkbXr36iWCzb6",
   website: "www.bytengeomapping.com",
   logo: "/assets/byten-logo.jpeg"
 };
@@ -16,68 +19,67 @@ export const heroData = {
 };
 
 export const statsData = [
-  { value: "500+", label: "Projects Completed" },
-  { value: "10,000+", label: "Acres Mapped" },
-  { value: "99.7%", label: "Accuracy" },
-  { value: "0.3cm", label: "Survey Precision" }
+  { value: "10+", label: "Industry Sectors" },
+  { value: "2020", label: "Year Founded" },
+  { value: "8", label: "Core Services" },
+  { value: "ISO 9001", label: "Certified" }
 ];
 
 export const clientLogos = [
-  { name: "Essar", logo: "/client-logos/Essar_logo.svg.png" },
+  { name: "Essar Group", logo: "/client-logos/Essar_logo.svg.png" },
   { name: "HPCL", logo: "/client-logos/Hindustan_Petroleum-Logo.wine.png" },
-  { name: "BPCL", logo: "/client-logos/Official_BPCL_LOGO.jpg" },
-  { name: "Indian Oil", logo: null },
+  { name: "Bharat Petroleum (BPCL)", logo: "/client-logos/Official_BPCL_LOGO.jpg" },
   { name: "Siemens Energy", logo: "/client-logos/power.png" },
   { name: "Megha Engineering (MEIL)", logo: null },
-  { name: "DMart", logo: "/client-logos/dmart.png" },
-  { name: "Café Coffee Day", logo: "/client-logos/images.png" }
+  { name: "D-Mart", logo: "/client-logos/dmart.png" },
+  { name: "Rays Power Infra", logo: null }
 ];
 
 export const features = [
   {
     id: 1,
-    title: "Surveying",
-    description: "Delivering survey-grade geospatial data using UAV photogrammetry, RTK/PPK positioning, and DGPS control points. Our workflows ensure accurate terrain modeling, measurement, and site intelligence for infrastructure, land development, and engineering projects.",
+    title: "Land Surveying",
+    description: "Using cutting-edge DGPS, Total Station, and drone-integrated survey methodologies, we deliver precise land data for planning, legal, and infrastructure purposes.",
     quote: {
-      text: "The 3D mapping accuracy exceeded our expectations. Drone surveys reduced weeks of manual work into just days.",
-      author: "Project Manager",
-      company: "Megha Engineering (MEIL)"
+      text: "Our motto is to provide high-quality data that ensures precision, reliability, and efficiency in our customers' operations.",
+      author: "Core Value",
+      company: "Byten"
     },
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800",
+    image: "/assets/land survay.jpg",
     imagePosition: "left"
   },
   {
     id: 2,
-    title: "Inspection",
-    description: "Delivering high-precision UAV-based inspections for solar plants, power lines, industrial facilities, and construction sites. Our workflows enable safe, fast, and accurate assessment of critical assets without operational disruption.",
+    title: "UAV and Drone Services",
+    description: "Byten employs cutting-edge drone technology for precise surveying and inspection across Power, Energy, Mining, Rail, Infrastructure, and Oil & Gas sectors.",
     quote: {
-      text: "Thermal inspections revealed critical hotspots we couldn't detect earlier, preventing major failures.",
-      author: "Chief Operations Officer",
-      company: "Energy Sector"
+      text: "Transforming the way we see and understand the world through advanced aerial analytics.",
+      author: "Innovation",
+      company: "Byten"
     },
     image: "/Inspection.jpg",
     imagePosition: "right"
   },
   {
     id: 3,
-    title: "Videography",
-    description: "Delivering high-resolution aerial and ground videography for infrastructure monitoring, project documentation, security surveillance, and official reporting. Designed for organizations that require clear, reliable, and scalable visual insights.",
+    title: "GIS and Remote Sensing",
+    description: "Transform raw data into actionable geospatial intelligence. From Cadastral Mapping to dynamic LULC tracking, we deliver structured insights.",
     quote: {
-      text: "The aerial videography transformed how we monitor site security and track construction progress across multiple locations.",
-      author: "Security Director",
-      company: "Commercial Real Estate"
+      text: "Uncovering patterns through querying, buffering, and 3D terrain analysis.",
+      author: "Spatial Analysis",
+      company: "Byten"
     },
     image: "/Videography.jpg",
     imagePosition: "left"
   },
   {
     id: 4,
-    title: "Digital Twin Creation",
-    description: "Creating accurate digital replicas of physical assets using LiDAR, photogrammetry, and high-precision sensor data. Our digital twin solutions enable detailed visualization, measurement, and monitoring of infrastructure across its lifecycle.",
+    title: "Geotechnical Engineering",
+    description: "Specializing in geo-technical exploration, drilling, soil investigation, and laboratory testing for comprehensive foundation studies.",
     quote: {
-      text: "The 3D digital twin of our facility has revolutionized maintenance planning. We can now predict issues before they occur.",
-      author: "Head of Infrastructure",
-      company: "Industrial Complex Management"
+      text: "Delivering accurate soil analysis and field testing for major infrastructure developments.",
+      author: "Engineering",
+      company: "Byten"
     },
     image: "/Digital-Twin.jpg",
     imagePosition: "right"
@@ -87,40 +89,41 @@ export const features = [
 export const products = [
   {
     id: 1,
-    title: "Survey-Grade Accuracy",
-    description: "High-precision geospatial data acquisition using RTK/PPK-enabled UAV systems. Achieve sub-centimeter accuracy for reliable mapping, measurement, and analysis.",
+    title: "ISO Certified Quality",
+    description: "Standardized quality management process ensuring precision and reliability in all deliverables.",
     icon: "Target",
-    features: ["Orthomosaic Generation", "DSM/DEM Outputs", "Sub-centimeter Accuracy", "Reliable Geospatial Data"]
+    features: ["ISO 9001:2015", "Strict Quality Control", "Reliable Geospatial Data", "Standardized Ops"]
   },
   {
     id: 2,
-    title: "Efficient Project Turnaround",
-    description: "Optimised workflows from field data capture to processed outputs ensure faster delivery without compromising accuracy.",
+    title: "Multiple Technology Stack",
+    description: "Providing DGPS, LIDAR, UAVs, GIS, and Total Station all under one roof to suit any terrain.",
     icon: "Zap",
-    features: ["Rapid Field Deployment", "Structured Data Processing", "Timely Deliverables", "Scalable Operations"]
+    features: ["Drone Mapping", "DGPS & RTK Systems", "Total Station", "LiDAR Scanners"]
   },
   {
     id: 3,
-    title: "Regulatory & Operational Compliance",
-    description: "Fully aligned with aviation and industry standards to ensure safe, legal, and compliant drone operations across all project sites.",
+    title: "End-to-End Delivery",
+    description: "Full accountability from feasibility to data handover. We map, process, and perform lab testing entirely in-house.",
     icon: "ShieldCheck",
-    features: ["DGCA Licensed Operations", "ISO 9001:2015 Certified", "NDMA Empanelled", "Standardised Safety Protocols"]
+    features: ["Field Surveying", "Data Processing", "Lab Testing", "Consultation"]
   },
   {
     id: 4,
-    title: "Experienced Field & Survey Team",
-    description: "A team of trained UAV pilots, survey engineers, and geospatial analysts delivering accurate and dependable results across diverse terrains.",
+    title: "Government Project Ready",
+    description: "Extensive experience handling major national schemes including SVAMITVA and MGNREGA mapping initiatives.",
     icon: "Users",
-    features: ["Certified UAV Pilots", "Survey & Mapping Experts", "On-Ground Execution Experience", "Proven Project Delivery"]
+    features: ["SVAMITVA Scheme", "Rural Governance", "MGNREGA Mapping", "Public Infrastructure"]
   }
 ];
 
 export const navLinks = [
-  { name: "Solutions", href: "#solutions" },
-  { name: "Industries", href: "#industries" },
-  { name: "Technology", href: "#technology" },
-  { name: "Why Byten", href: "#why-byten" },
-  { name: "Contact", href: "#contact" }
+  { name: "Solutions", href: "/#solutions" },
+  { name: "Industries", href: "/#industries" },
+  { name: "Technology", href: "/#technology" },
+  { name: "Why Byten", href: "/#why-byten" },
+  { name: "Leadership", href: "/directors-vision" },
+  { name: "Contact", href: "/#contact" }
 ];
 
 export const footerSections = [
@@ -147,11 +150,11 @@ export const footerSections = [
   {
     title: "Company",
     links: [
-      { name: "About Us", href: "#" },
-      { name: "Case Studies", href: "#" },
-      { name: "Careers", href: "#" },
+      { name: "About Us", href: "/#why-byten" },
+      { name: "Director's Vision", href: "/directors-vision" },
+      { name: "Case Studies", href: "/#solutions" },
       { name: "Certifications", href: "#" },
-      { name: "Contact", href: "#" }
+      { name: "Contact", href: "/#contact" }
     ]
   },
   {

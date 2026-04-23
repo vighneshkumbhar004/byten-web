@@ -6,39 +6,63 @@ import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 const fields = [
   {
     id: 1,
-    name: 'Energy',
-    description: 'Advanced inspection & monitoring for solar, wind, and power infrastructure using thermal and LiDAR technologies.',
-    image: 'https://images.unsplash.com/photo-1765263857986-271b4923632d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbmVyZ3klMjBwb3dlciUyMHJlbmV3YWJsZSUyMHNvbGFyJTIwd2luZHxlbnwwfHx8fDE3NzUzOTc3NDZ8MA&ixlib=rb-4.1.0&q=85'
+    name: 'Infrastructure',
+    description: 'Roads, bridges, urban corridors, and large-scale construction projects.',
+    image: 'https://images.unsplash.com/photo-1541888081622-132d78b05b4b?w=800'
   },
   {
     id: 2,
-    name: 'Construction',
-    description: 'Real-time construction tracking, volumetric analysis, and digital twins for project lifecycle management.',
-    image: 'https://images.unsplash.com/photo-1663058480199-acbc638bf21a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGUlMjB3b3JrZXJzfGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
+    name: 'Power Transmission',
+    description: 'High-voltage transmission line routing, inspection, and corridor surveys.',
+    image: 'https://images.unsplash.com/photo-1513828742140-ccaa28f3eda0?w=800'
   },
   {
     id: 3,
-    name: 'Mining',
-    description: 'High-precision terrain mapping, stockpile analysis, and operational monitoring for mining efficiency.',
-    image: 'https://images.unsplash.com/photo-1772543983082-a8a8051ab612?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBxdWFycnklMjBleGNhdmF0aW9ufGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
+    name: 'Renewable Energy',
+    description: 'Solar farm surveys, wind turbine inspections, and energy corridor mapping.',
+    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800'
   },
   {
     id: 4,
-    name: 'Agriculture',
-    description: 'AI-driven crop health analysis using multispectral imaging and environmental mapping.',
-    image: 'https://images.unsplash.com/photo-1721594489446-7fd9d30a3d71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyZSUyMGZhcm1pbmclMjBhZXJpYWx8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
+    name: 'Oil & Gas',
+    description: 'Pipeline route surveys, corridor mapping, and safety zone delineation.',
+    image: 'https://images.unsplash.com/photo-1621503816694-ba4e54869894?w=800'
   },
   {
     id: 5,
-    name: 'Government Agencies',
-    description: 'Surveying, surveillance, and smart city mapping solutions for public sector and infrastructure planning.',
-    image: 'https://images.unsplash.com/photo-1760553120312-2821bf54e767?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHBsYW5uaW5nJTIwY2l0eSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc3NTM5Nzc0Nnww&ixlib=rb-4.1.0&q=85'
+    name: 'Forest & Environment',
+    description: 'Multispectral forest inventory, canopy density, and vegetation health analysis.',
+    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800'
   },
   {
     id: 6,
-    name: 'Infrastructure',
-    description: 'End-to-end mapping, inspection, and analytics for roads, railways, pipelines, and utilities.',
-    image: 'https://images.unsplash.com/photo-1768174004465-8afe7a180052?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxpbmZyYXN0cnVjdHVyZSUyMGNvbnN0cnVjdGlvbiUyMGFlcmlhbCUyMHZpZXd8ZW58MHx8fHwxNzc1Mzk3NzQ2fDA&ixlib=rb-4.1.0&q=85'
+    name: 'Aviation',
+    description: 'Airport area surveys, obstacle mapping, and airspace analysis.',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800'
+  },
+  {
+    id: 7,
+    name: 'Defence',
+    description: 'Restricted area mapping and terrain analysis for strategic planning.',
+    image: 'https://images.unsplash.com/photo-1502758714652-e4d6edb5cbe4?w=800'
+  },
+  {
+    id: 8,
+    name: 'Transportation',
+    description: 'Railway surveys, road alignment studies, and transportation infrastructure mapping.',
+    image: 'https://images.unsplash.com/photo-1473625247510-8b1b22e177b9?w=800'
+  },
+  {
+    id: 9,
+    name: 'Urban Development',
+    description: 'Smart city mapping, urban growth analysis, and municipal planning.',
+    image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800'
+  },
+  {
+    id: 10,
+    name: 'Rural Governance',
+    description: 'Village boundary surveys, SVAMITVA, MGNREGA, and land record digitization.',
+    image: 'https://images.unsplash.com/photo-1589923188900-85dae523342b?w=800'
   }
 ];
 

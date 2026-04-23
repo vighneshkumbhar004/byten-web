@@ -1,12 +1,65 @@
 import React from 'react';
 import { footerSections, socialLinks, companyInfo } from '../mock/mockData';
-import { Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Linkedin, Twitter, Facebook, Instagram, Send, CheckCircle2 } from 'lucide-react';
+import { subscribeNewsletter } from '../services/api';
+import { toast } from 'sonner';
 
 const iconMap = {
   Linkedin: Linkedin,
   Twitter: Twitter,
   Facebook: Facebook,
   Instagram: Instagram
+};
+
+const NewsletterForm = () => {
+  const [email, setEmail] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const [subscribed, setSubscribed] = React.useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    const result = await subscribeNewsletter(email);
+    
+    if (result.success) {
+      setSubscribed(true);
+      toast.success('Successfully subscribed to newsletter!');
+      setEmail('');
+    } else {
+      toast.error(result.error);
+    }
+    setLoading(false);
+  };
+
+  if (subscribed) {
+    return (
+      <div className="flex items-center gap-3 bg-green-500/10 text-green-700 px-6 py-4 rounded-2xl border border-green-500/20 animate-in fade-in zoom-in duration-300">
+        <CheckCircle2 size={24} />
+        <span className="font-semibold">You're on the list!</span>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="relative w-full max-w-sm group">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="w-full bg-white/50 backdrop-blur-sm border border-[#0A111A]/10 rounded-2xl px-6 py-4 pr-14 text-[#0A111A] outline-none focus:border-[#0A111A]/30 focus:bg-white transition-all duration-300 shadow-inner"
+      />
+      <button
+        type="submit"
+        disabled={loading}
+        className="absolute right-2 top-2 bottom-2 aspect-square bg-[#0A111A] text-white rounded-xl flex items-center justify-center hover:bg-[#1A2130] transition-colors duration-200 disabled:opacity-50"
+      >
+        <Send size={20} className={loading ? 'animate-pulse' : ''} />
+      </button>
+    </form>
+  );
 };
 
 const Footer = () => {
@@ -33,6 +86,21 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Newsletter Signup Section */}
+        <div className="bg-[#0A111A]/5 rounded-3xl p-8 mb-12 border border-[#0A111A]/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-md">
+              <h3 className="text-[#0A111A] font-bold text-2xl mb-2 font-heading">
+                Stay Updated
+              </h3>
+              <p className="text-[#0A111A]/70 text-sm font-sans">
+                Get the latest geospatial intelligence and drone technology insights delivered to your inbox.
+              </p>
+            </div>
+            <NewsletterForm />
+          </div>
         </div>
 
         <div className="border-t border-[#0A111A]/20 pt-8">

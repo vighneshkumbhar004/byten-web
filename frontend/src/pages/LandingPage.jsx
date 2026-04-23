@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection';
 import FieldsWeWorkUnder from '../components/FieldsWeWorkUnder';
 import TechSection from '../components/TechSection';
 import FeaturesSection from '../components/FeaturesSection';
+import CoreServices from '../components/CoreServices';
 import ProductGrid from '../components/ProductGrid';
 import ContactForm from '../components/ContactForm';
 import TrustedBySection from '../components/LogoBanner';
@@ -19,6 +20,7 @@ const LandingPage = () => {
         <FieldsWeWorkUnder />
         <TechSection />
         <FeaturesSection />
+        <CoreServices />
         <ProductGrid />
         <TrustedBySection />
         <ContactForm />

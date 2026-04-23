@@ -1,196 +1,152 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
-import { Check, Zap, FileText, Layers, Target, ArrowRight } from 'lucide-react';
+import { Check, Zap, FileText, Layers, ArrowRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 
 const serviceData = {
-  surveying: {
-    title: "Precision Drone Surveying & Mapping",
-    subtitle: "Delivering survey-grade geospatial data with centimeter-level accuracy using UAVs, LiDAR, and RTK systems.",
-    hero: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200",
-    overview: "Delivering survey-grade geospatial data using UAV photogrammetry, RTK/PPK positioning, and DGPS control points. Our workflows ensure accurate terrain modeling, measurement, and site intelligence for infrastructure, land development, and engineering projects.",
+  "land-surveying": {
+    title: "Precision Land Surveying",
+    subtitle: "Using cutting-edge DGPS, Total Station, and drone-integrated methodologies.",
+    hero: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200",
+    overview: "We deliver precise land data for planning, legal, and infrastructure purposes. By integrating drones with DGPS and handheld sensors, we provide high-resolution imagery with accurate real coordinates.",
     capabilities: [
-      "Orthomosaic Mapping",
-      "DSM / DEM Generation",
-      "Contour & Elevation Mapping",
-      "Volume Calculation",
-      "Ground Control Point Integration"
+      "DGPS & Drone Integrated Surveys",
+      "Topographic Mapping & DEMs",
+      "Route Alignments & Transmissions",
+      "Contour & Surface Models",
+      "Private & Gov Boundary Surveys"
     ],
     deliverables: [
-      "Orthomosaic Maps (2D)",
-      "Digital Elevation Models (DEM/DTM)",
-      "Contour Maps & Topographic Data",
-      "3D Terrain Models",
-      "GIS & CAD Ready Files"
+      "Topographic Maps (AutoCAD)",
+      "Digital Elevation Models (DEM)",
+      "Millimeter-level Static DGPS",
+      "Partition Layout & Development Plans"
     ],
     useCases: [
-      "Land Acquisition & Planning",
-      "Highway & Railway Projects",
-      "Mining Volume Analysis",
-      "Smart City Development"
+      "Infrastructure Development",
+      "Solar Project Analysis",
+      "Land Record Digitization",
+      "Legal Boundary Disputes"
     ],
     benefits: [
-      "5x Faster than traditional surveys",
-      "Millimeter-level precision",
-      "Reduced manpower & cost",
-      "Real-time data processing"
+      "Millimeter precision",
+      "Tailored site execution",
+      "Highly accurate GPS tracking",
+      "Seamless drone integration"
     ],
     cta: "Start Your Survey Project"
   },
-  inspection: {
-    title: "Advanced Drone Inspection Solutions",
-    subtitle: "AI-powered aerial inspections for energy, infrastructure, and industrial assets.",
+  "uav-and-drone-services": {
+    title: "UAV & Drone Photogrammetry",
+    subtitle: "Cutting-edge drone technology for precise surveying and asset inspection.",
     hero: "/Inspection.jpg",
-    overview: "Delivering high-precision UAV-based inspections for solar plants, power lines, industrial facilities, and construction sites. Our workflows enable safe, fast, and accurate assessment of critical assets without operational disruption.",
+    overview: "Byten employs cutting-edge drone technology across Power, Energy, Mining, Rail, Infrastructure, and Oil & Gas sectors. From DGPS control point acquisition to high-resolution geospatial outputs, we optimize data workflows.",
     capabilities: [
-      "Thermal Inspection for Solar Panels (Hotspot Detection)",
-      "Power Line & Transmission Monitoring",
-      "Industrial Equipment Inspection",
-      "Construction Site Progress & Safety Monitoring",
-      "Fault Detection & Preventive Maintenance"
+      "Flight Route Planning & Execution",
+      "Orthomosaic Mapping",
+      "Thermal Solar Panel Inspection",
+      "Power Line & Wind Turbine Tracking",
+      "Smart City 3D Topographic Data"
     ],
     deliverables: [
-      "Thermal Heatmaps & Reports",
-      "Defect Detection Reports",
-      "Geo-tagged Issue Mapping",
-      "Predictive Maintenance Insights"
+      "Orthomosaic Maps (GeoTIFF)",
+      "2D & 3D Point Clouds",
+      "Digital Surface & Terrain Models",
+      "Cross & Long Section Profiles"
     ],
     useCases: [
-      "Solar Plant Optimization",
-      "Power Grid Maintenance",
-      "Factory Safety Monitoring",
-      "Infrastructure Health Assessment"
+      "Renewable Energy & Solar",
+      "Mining & Volumetric Analysis",
+      "Power Transmission Corridors",
+      "Railways & Infrastructure"
     ],
     benefits: [
-      "Early fault detection",
-      "Reduced downtime",
-      "Improved safety compliance",
-      "Cost-efficient maintenance"
+      "Millimeter-level damage detection",
+      "Real-time visual updates",
+      "Rapid data processing",
+      "Non-intrusive operations"
     ],
-    cta: "Schedule an Inspection"
+    cta: "Schedule an Aerial Survey"
   },
-  videography: {
-    title: "Aerial Videography & Visual Intelligence",
-    subtitle: "Cinematic drone visuals combined with technical insights for enterprises and government.",
+  "gis-and-remote-sensing": {
+    title: "GIS & Remote Sensing Solutions",
+    subtitle: "Transform raw data into actionable geospatial intelligence.",
     hero: "/Videography.jpg",
-    overview: "Delivering high-resolution aerial and ground videography for infrastructure monitoring, project documentation, security surveillance, and official reporting. Designed for organisations that require clear, reliable, and scalable visual insights.",
+    overview: "We offer complete spatial data analysis, uncovering patterns through querying, buffering, and 3D terrain analysis. From transforming analog maps to digital coordinates, we align digital infrastructures to real-world dimensions.",
     capabilities: [
-      "Infrastructure & Construction Progress Monitoring",
-      "Government Project Documentation",
-      "Site Surveillance & Security Monitoring",
-      "Corporate & Industrial Coverage",
-      "Time-Lapse & Periodic Project Tracking"
+      "Cadastral & Parcel Mapping",
+      "Dynamic Map Preparation",
+      "LULC & Utility Mapping",
+      "CAD & Digitization Works",
+      "Geo-Referencing Automation"
     ],
     deliverables: [
-      "Promotional Videos",
-      "Project Walkthroughs",
-      "Progress Monitoring Footage",
-      "Interactive Virtual Tours"
+      "Digitized Master Base Maps",
+      "LULC Spatial Reports",
+      "SVAMITVA Scheme Support Maps",
+      "Forest LiDAR & Multispectral Inventory"
     ],
     useCases: [
-      "Real Estate Marketing",
-      "Corporate Branding",
-      "Government Projects",
-      "Construction Progress Tracking"
+      "Urban & Rural Governance",
+      "Forest Department Planning",
+      "Real Estate Parcel Mapping",
+      "Utility Network Distribution"
     ],
     benefits: [
-      "High-impact visual storytelling",
-      "Remote project visibility",
-      "Marketing-ready content",
-      "Enhanced stakeholder communication"
+      "Accurate legal boundaries",
+      "Interactive & customizable",
+      "Seamless CAD integration",
+      "Data-driven regional planning"
     ],
-    cta: "Create Your Aerial Story"
+    cta: "Optimize Your Geospatial Data"
   },
-  "digital-twin-creation": {
-    title: "Digital Twin & 3D Modeling Solutions",
-    subtitle: "Transform real-world assets into intelligent, interactive digital environments.",
+  "geotechnical-engineering": {
+    title: "Geotechnical Engineering",
+    subtitle: "Comprehensive soil exploration and geophysical foundation studies.",
     hero: "/Digital-Twin.jpg",
-    overview: "Creating accurate digital replicas of physical assets using LiDAR, photogrammetry, and high-precision sensor data. Our digital twin solutions enable detailed visualisation, measurement, and monitoring of infrastructure across its lifecycle. Using advanced sensors and UAV-based data capture, we generate high-fidelity 3D models that support planning, inspection, and maintenance workflows for complex environments.",
+    overview: "We specialize in geo-technical exploration and geophysical investigations for large infrastructure projects. Combining robust in-situ field testing with extensive laboratory analysis to ensure solid foundation capacities.",
     capabilities: [
-      "LiDAR-Based 3D Scanning",
-      "High-Density Point Cloud Generation",
-      "3D Mesh & Model Creation",
-      "As-Built Documentation",
-      "Infrastructure Lifecycle Monitoring"
+      "Soil Boring & Core Drilling",
+      "Standard Penetration Testing (SPT)",
+      "Safe Bearing Capacity (SBC)",
+      "Seismic Refraction",
+      "Water Exploration & Resistivity"
     ],
     deliverables: [
-      "Dense Point Clouds (LAS/LAZ)",
-      "3D Mesh Models",
-      "BIM-Compatible Files",
-      "Interactive Digital Twins"
+      "Detailed Soil Investigation Reports",
+      "Field Permeability Analysis",
+      "Liquid & Plastic Limit Metrics",
+      "Consolidation & Direct Shear Outputs"
     ],
     useCases: [
-      "Smart Cities",
-      "Infrastructure Management",
-      "Industrial Plants",
-      "Construction Lifecycle Tracking"
+      "Bridge & Highway Construction",
+      "Heavy Infrastructure Layouts",
+      "Industrial Corridors",
+      "Architectural Foundation Planning"
     ],
     benefits: [
-      "Real-time asset monitoring",
-      "Improved planning & simulation",
-      "Reduced operational risks",
-      "Data-driven decision making"
+      "NABL-compliant laboratory testing",
+      "Extensive sub-surface clarity",
+      "Risk mitigation for construction",
+      "End-to-End exploration delivery"
     ],
-    cta: "Build Your Digital Twin"
+    cta: "Request a Geotechnical Study"
   }
 };
-
-// Panel indicator dots
-const PanelIndicator = ({ total, current }) => (
-  <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-2">
-    {Array.from({ length: total }).map((_, i) => (
-      <div
-        key={i}
-        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-          i === current ? 'bg-[#FFCC00] w-6' : 'bg-white/40'
-        }`}
-      />
-    ))}
-  </div>
-);
 
 const ServiceDetail = () => {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const service = serviceData[serviceName];
-  const containerRef = useRef(null);
-  const [currentPanel, setCurrentPanel] = React.useState(0);
-  const totalPanels = 7; // Hero, Overview, Capabilities, Deliverables, Use Cases, Benefits, CTA
 
-  const { scrollXProgress } = useScroll({ container: containerRef });
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const element = containerRef.current;
-
-    const handleWheel = (e) => {
-      if (element && e.deltaY !== 0) {
-        e.preventDefault();
-        element.scrollLeft += e.deltaY;
-      }
-    };
-
-    const handleScroll = () => {
-      if (element) {
-        const panel = Math.round(element.scrollLeft / window.innerWidth);
-        setCurrentPanel(panel);
-      }
-    };
-
-    if (element) {
-      element.addEventListener('wheel', handleWheel, { passive: false });
-      element.addEventListener('scroll', handleScroll);
-    }
-    return () => {
-      if (element) {
-        element.removeEventListener('wheel', handleWheel);
-        element.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, []);
+  }, [serviceName]);
 
   if (!service) {
     return (
@@ -209,7 +165,7 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="bg-transparent text-gray-100 h-screen w-screen overflow-hidden relative font-sans">
+    <div className="bg-transparent text-gray-100 min-h-screen w-full relative font-sans">
       {/* Fixed Navbar */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <Navbar />
@@ -218,30 +174,25 @@ const ServiceDetail = () => {
       {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-[#FFCC00] origin-left z-[60]"
-        style={{ scaleX: scrollXProgress }}
+        style={{ scaleX: scrollYProgress }}
       />
 
-      {/* Horizontal Scroll Container */}
-      <div
-        ref={containerRef}
-        className="relative z-10 flex h-screen w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
-        style={{ scrollBehavior: 'smooth' }}
-      >
+      <div className="flex flex-col w-full relative z-10 pt-20">
 
         {/* ── PANEL 1: Hero ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative overflow-hidden flex items-center justify-center pt-20 snap-center">
+        <section className="w-full min-h-[90vh] relative flex items-center border-b border-white/10">
           <div className="absolute inset-0">
             <img
               src={service.hero}
               alt={service.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A111A]/85 via-[#0A111A]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A111A] via-[transparent] to-[#0A111A]/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A111A]/90 via-[#0A111A]/60 to-transparent" />
           </div>
 
           <div className="relative z-10 w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              {/* Back button */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
               <motion.button
                 onClick={() => navigate('/')}
                 initial={{ opacity: 0, x: -20 }}
@@ -271,7 +222,7 @@ const ServiceDetail = () => {
                 </p>
                 <div className="mt-10 flex items-center gap-3 text-gray-300 text-sm">
                   <span className="animate-pulse w-2 h-2 rounded-full bg-[#FFCC00] inline-block" />
-                  Scroll to explore →
+                  Scroll to explore ↓
                 </div>
               </motion.div>
             </div>
@@ -279,15 +230,15 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 2: Overview ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A111A]/70 to-[#1a2233]/80 backdrop-blur-sm" />
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <section className="w-full relative flex items-center py-32 border-b border-white/5">
+          <div className="absolute inset-0 bg-transparent" />
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-4">01 — Overview</p>
               <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-10 font-heading leading-tight">
                 What We Do
               </h2>
-              <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-medium border-l-4 border-[#FFCC00] pl-8">
+              <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-medium border-l-4 border-[#FFCC00] pl-8 bg-white/5 p-8 rounded-r-3xl backdrop-blur-sm border-r border-[#FFCC00]/10">
                 {service.overview}
               </p>
             </motion.div>
@@ -295,10 +246,9 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 3: Capabilities ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A111A]/75 to-[#111827]/80 backdrop-blur-sm" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <section className="w-full relative flex items-center py-32 border-b border-white/5 bg-gradient-to-b from-transparent to-black/30">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-4">02 — Capabilities</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-10 font-heading">
                 What We Can Do
@@ -309,12 +259,13 @@ const ServiceDetail = () => {
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
                     whileHover={{ y: -4, scale: 1.02 }}
-                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 flex items-start gap-4 hover:border-[#FFCC00]/50 hover:bg-white/15 transition-all duration-300"
+                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 flex items-start gap-4 hover:border-[#FFCC00]/50 hover:bg-white/15 transition-all duration-300 shadow-xl"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#FFCC00] flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <Zap size={20} className="text-white" />
+                      <Zap size={20} className="text-gray-900" />
                     </div>
                     <p className="text-white font-semibold text-lg leading-snug">{cap}</p>
                   </motion.div>
@@ -325,10 +276,9 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 4: Deliverables ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#111827]/80 to-[#0A111A]/75 backdrop-blur-sm" />
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <section className="w-full relative flex items-center py-32 border-b border-white/5">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-4">03 — Deliverables</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-10 font-heading">
                 What You Receive
@@ -339,11 +289,12 @@ const ServiceDetail = () => {
                     key={i}
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 hover:border-[#FFCC00]/50 transition-all duration-300 group"
+                    className="flex items-center gap-5 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:border-[#FFCC00]/50 transition-all duration-300 group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#FFCC00]/20 border border-[#FFCC00]/50 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FFCC00] transition-colors duration-300">
-                      <FileText size={18} className="text-[#FFCC00] group-hover:text-white transition-colors duration-300" />
+                      <FileText size={18} className="text-[#FFCC00] group-hover:text-gray-900 transition-colors duration-300" />
                     </div>
                     <span className="text-white font-semibold text-xl">{item}</span>
                   </motion.div>
@@ -354,10 +305,9 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 5: Use Cases ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A111A]/80 to-[#1a2233]/75 backdrop-blur-sm" />
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <section className="w-full relative flex items-center py-32 border-b border-white/5 bg-gradient-to-t from-black/20 to-transparent">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-4">04 — Use Cases</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-10 font-heading">
                 Industries We Serve
@@ -368,13 +318,14 @@ const ServiceDetail = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ y: -4 }}
-                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-[#FFCC00]/50 hover:bg-white/15 transition-all duration-300 group"
+                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-[#FFCC00]/50 hover:bg-white/15 transition-all duration-300 group shadow-lg"
                   >
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-xl bg-[#FFCC00]/20 border border-[#FFCC00]/40 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FFCC00] transition-colors duration-300">
-                        <Layers size={18} className="text-[#FFCC00] group-hover:text-white transition-colors duration-300" />
+                        <Layers size={18} className="text-[#FFCC00] group-hover:text-gray-900 transition-colors duration-300" />
                       </div>
                       <span className="text-white font-bold text-xl">{useCase}</span>
                     </div>
@@ -386,10 +337,9 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 6: Key Benefits ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#111827]/80 to-[#0A111A]/80 backdrop-blur-sm" />
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <section className="w-full relative flex items-center py-32 border-b border-white/5">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-4">05 — Key Benefits</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-10 font-heading">
                 Why Choose Byten
@@ -400,11 +350,12 @@ const ServiceDetail = () => {
                     key={i}
                     initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:border-[#FFCC00]/50 transition-all duration-300 group"
+                    className="flex items-center gap-5 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-[#FFCC00]/50 transition-all duration-300 group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-[#FFCC00] flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Check size={22} className="text-white" />
+                      <Check size={22} className="text-gray-900" />
                     </div>
                     <span className="text-white font-semibold text-xl">{benefit}</span>
                   </motion.div>
@@ -415,11 +366,10 @@ const ServiceDetail = () => {
         </section>
 
         {/* ── PANEL 7: CTA ── */}
-        <section className="w-screen h-screen flex-shrink-0 relative flex items-center justify-center pt-20 snap-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A111A]/90 to-[#1a2233]/90 backdrop-blur-md" />
+        <section className="w-full relative flex items-center py-40 overflow-hidden">
           {/* Animated glow */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFCC00]/10 rounded-full blur-[120px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFCC00]/10 rounded-full blur-[120px] pointer-events-none"
             animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -427,6 +377,7 @@ const ServiceDetail = () => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
               <p className="text-[#FFCC00] font-bold uppercase tracking-widest text-sm mb-6">06 — Get Started</p>
@@ -443,7 +394,7 @@ const ServiceDetail = () => {
                   onClick={() => navigate('/#contact')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 bg-[#FFCC00] text-gray-900 px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 bg-[#FFCC00] text-gray-900 px-10 py-5 rounded-2xl font-extrabold text-xl shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   {service.cta}
                   <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
@@ -452,7 +403,7 @@ const ServiceDetail = () => {
                   onClick={() => navigate('/')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 bg-white/10 border border-white/30 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 bg-white/10 border border-white/30 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 transition-all duration-300"
                 >
                   Back to Home
                 </motion.button>
@@ -461,10 +412,8 @@ const ServiceDetail = () => {
           </div>
         </section>
 
+        <Footer />
       </div>
-
-      {/* Panel indicator */}
-      <PanelIndicator total={totalPanels} current={currentPanel} />
 
       <WhatsAppButton />
     </div>

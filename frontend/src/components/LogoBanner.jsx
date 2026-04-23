@@ -29,17 +29,19 @@ const TrustedBySection = () => {
                 className="flex items-center justify-center flex-shrink-0 mx-8 opacity-75 hover:opacity-100 transition-all duration-300"
               >
                 {client.logo ? (
-                  <div className="bg-white rounded-xl px-5 py-3 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center" style={{minWidth: '130px', height: '56px'}}>
+                  <div className="bg-white rounded-2xl px-8 py-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(255,204,0,0.2)] hover:scale-105 transition-all duration-300 flex items-center justify-center border border-white/10" style={{minWidth: '320px', height: '140px'}}>
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="h-8 w-auto object-contain max-w-[110px]"
+                      className="h-24 w-auto object-contain max-w-[280px]"
                     />
                   </div>
                 ) : (
-                  <span className="text-white font-bold text-base tracking-wide whitespace-nowrap border border-white/20 rounded-xl px-5 py-3 bg-white/5 hover:bg-white/10 hover:border-[#FFCC00]/50 hover:text-[#FFCC00] transition-all duration-300 font-heading">
-                    {client.name}
-                  </span>
+                  <div className="flex items-center justify-center border border-white/20 rounded-2xl px-8 py-6 bg-white/5 hover:bg-white/10 hover:border-[#FFCC00]/50 group transition-all duration-300" style={{minWidth: '320px', height: '140px'}}>
+                    <span className="text-white font-bold text-2xl tracking-wide whitespace-nowrap group-hover:text-[#FFCC00] transition-colors duration-300 font-heading">
+                      {client.name}
+                    </span>
+                  </div>
                 )}
               </div>
             ))}

@@ -123,26 +123,28 @@ const ContactForm = () => {
 
             <div className="space-y-8">
               {[
-                { icon: Mail, title: 'Email', text: companyInfo.email },
-                { icon: MapPin, title: 'Headquarters', text: 'Pune, Maharashtra, India', subtext: 'Regional offices in Mumbai, Hyderabad, Bengaluru, Delhi' },
-                { icon: Phone, title: 'Certifications', text: 'DGCA Licensed • ISO 9001:2015 • SOC 2 Type II • NDMA Empanelled' }
+                { icon: Mail, title: 'Email', text: companyInfo.email, href: `mailto:${companyInfo.email}` },
+                { icon: MapPin, title: 'Headquarters', text: companyInfo.address, subtext: 'Regional offices in Mumbai, Hyderabad, Bengaluru, Delhi', href: companyInfo.addressUrl },
+                { icon: Phone, title: 'Direct Reach', text: companyInfo.phone, href: `tel:${companyInfo.phone}` }
               ].map((item, i) => (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={item.href}
+                  target={item.title === 'Headquarters' ? '_blank' : '_self'}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.2 + (i * 0.1), duration: 0.5 }}
-                  className="flex items-start group"
+                  className="flex items-start group cursor-pointer"
                 >
                   <div className="bg-white shadow-sm group-hover:shadow-md group-hover:bg-[#FFCC00] group-hover:-translate-y-1 transition-all duration-300 rounded-2xl p-4 mr-6 border border-gray-100 flex-shrink-0">
                     <item.icon className="text-[#FFCC00] group-hover:text-gray-900 transition-colors" size={28} />
                   </div>
                   <div className="pt-1">
                     <p className="font-bold text-gray-900 text-lg mb-1 font-heading">{item.title}</p>
-                    <p className="text-gray-600 text-[1.05rem] leading-snug font-sans">{item.text}</p>
+                    <p className="text-gray-600 text-[1.05rem] leading-snug font-sans group-hover:text-[#FFCC00] transition-colors">{item.text}</p>
                     {item.subtext && <p className="text-sm text-gray-500 mt-2 font-sans">{item.subtext}</p>}
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>

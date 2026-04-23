@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class BytenLandingAPITester:
-    def __init__(self, base_url="https://yellow-cta-pro.preview.emergentagent.com"):
+    def __init__(self, base_url="http://localhost:8000"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0
@@ -192,6 +192,32 @@ class BytenLandingAPITester:
             self.log_test("Get Contact Submissions", False, str(e))
             return False
 
+    def test_newsletter_subscription(self):
+        """Test newsletter subscription endpoint"""
+        test_data = {
+            "email": f"newsletter_test_{datetime.now().strftime('%H%M%S')}@example.com"
+        }
+        
+        try:
+            response = requests.post(
+                f"{self.api_url}/newsletter/subscribe",
+                json=test_data,
+                headers={'Content-Type': 'application/json'},
+                timeout=10
+            )
+            success = response.status_code == 200
+            details = f"Status: {response.status_code}"
+            if success:
+                data = response.json()
+                details += f", Subscription ID: {data.get('id', 'N/A')}"
+            else:
+                details += f", Error: {response.text}"
+            self.log_test("Newsletter Subscription", success, details)
+            return success
+        except Exception as e:
+            self.log_test("Newsletter Subscription", False, str(e))
+            return False
+
     def run_all_tests(self):
         """Run all API tests"""
         print("🚀 Starting Byten Geomapping API Tests...")
@@ -206,6 +232,7 @@ class BytenLandingAPITester:
         self.test_demo_request()
         self.test_demo_request_hero_source()
         self.test_contact_form_submission()
+        self.test_newsletter_subscription()
         
         # Admin/stats endpoints
         self.test_get_stats()

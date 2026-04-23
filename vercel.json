@@ -15,5 +15,6 @@
   ],
   "github": {
     "silent": true
-  }
+  },
+  "outputDirectory": "frontend/build"
 }

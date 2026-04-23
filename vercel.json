@@ -18,8 +18,8 @@
   },
   "outputDirectory": "frontend/build",
   "functions": {
-    "api/**/*.py": {
-      "excludeFiles": "{assets/**,backend/**,frontend/src/**,frontend/public/**,tests/**,memory/**,node_modules/**}"
+    "api/*.py": {
+      "excludeFiles": "{assets/**,backend/**,frontend/**,tests/**,memory/**,test_reports/**,*.md,*.pdf,*.mp4}"
     }
   }
 }

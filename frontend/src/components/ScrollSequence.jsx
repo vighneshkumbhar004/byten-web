@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 
 const ScrollSequence = ({ frameCount = 300, progress }) => {
@@ -51,7 +51,7 @@ const ScrollSequence = ({ frameCount = 300, progress }) => {
 
   const frameIndex = useTransform(activeProgress, [0, 1], [0, frameCount - 1]);
 
-  const drawFrame = (index, imgs = images) => {
+  const drawFrame = useCallback((index, imgs = images) => {
     if (!canvasRef.current || !imgs[index] || !imgs[index].complete) return;
     
     const canvas = canvasRef.current;
@@ -96,7 +96,7 @@ const ScrollSequence = ({ frameCount = 300, progress }) => {
     const y = (canvasHt - renderHeight) / 2;
 
     ctx.drawImage(img, x, y, renderWidth, renderHeight);
-  };
+  }, [images]);
 
   // Initial draw once loading completes and canvas is in DOM
   useEffect(() => {
@@ -105,7 +105,7 @@ const ScrollSequence = ({ frameCount = 300, progress }) => {
         drawFrame(Math.round(frameIndex.get()));
       });
     }
-  }, [loading]);
+  }, [loading, drawFrame, frameIndex]);
 
   // Subscribe to frame changes to recalculate the canvas
   useEffect(() => {
@@ -116,7 +116,7 @@ const ScrollSequence = ({ frameCount = 300, progress }) => {
       requestAnimationFrame(() => drawFrame(index));
     });
     return () => unsubscribe();
-  }, [loading, frameIndex, images]);
+  }, [loading, frameIndex, drawFrame]);
   
   // Handle resize to redraw the canvas
   useEffect(() => {
@@ -126,7 +126,7 @@ const ScrollSequence = ({ frameCount = 300, progress }) => {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [loading, images, frameIndex]);
+  }, [loading, frameIndex, drawFrame]);
 
   return (
     <div className="fixed inset-0 w-full h-full bg-[#E6E6E6] flex items-center justify-center z-0 overflow-hidden pointer-events-none">

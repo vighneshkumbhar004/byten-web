@@ -62,14 +62,14 @@ export const features = [
   },
   {
     id: 3,
-    title: "GIS and Remote Sensing",
-    description: "Transform raw data into actionable geospatial intelligence. From Cadastral Mapping to dynamic LULC tracking, we deliver structured insights.",
+    title: "Drone Videography",
+    description: "Capturing cinematic high-definition aerial footage for project marketing, site progress monitoring, and large-scale industrial documentation.",
     quote: {
-      text: "Uncovering patterns through querying, buffering, and 3D terrain analysis.",
-      author: "Spatial Analysis",
+      text: "Visualizing progress through the lens of precision and cinematic excellence.",
+      author: "Media Division",
       company: "Byten"
     },
-    image: "/Videography.jpg",
+    video: "/assets/drone-videography.mp4",
     imagePosition: "left"
   },
   {
@@ -81,7 +81,7 @@ export const features = [
       author: "Engineering",
       company: "Byten"
     },
-    image: "/Digital-Twin.jpg",
+    image: "/assets/geotechnical-v2.png",
     imagePosition: "right"
   }
 ];
